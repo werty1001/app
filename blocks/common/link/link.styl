@@ -1,0 +1,25 @@
+
+/*!*
+ * Link
+ */
+
+.link
+
+	color = typeof( $color ) == 'object' ? $color : {}
+
+	border 0
+	outline 0
+	color: typeof( color.link ) == 'rgba' ? color.link : #156ab9
+	text-decoration underline
+	background-color transparent
+	-webkit-text-decoration-skip objects
+	transition unquote('color') .4s
+
+	&:hover
+		cursor pointer
+		color: typeof( color.link_hover ) == 'rgba' ? color.link_hover : #333
+		text-decoration none
+	
+	if typeof( color.link_visited ) == 'rgba'
+		&:visited
+			color: color.link_visited

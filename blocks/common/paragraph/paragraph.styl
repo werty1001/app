@@ -1,0 +1,15 @@
+
+/*!*
+ * Paragraph
+ */
+
+.paragraph
+
+	typography = typeof( $typography ) == 'object' ? $typography : {}
+
+	margin 0
+	font-size 1em
+	line-height: typeof( typography.line ) == 'unit' ? typography.line : 1.4
+	
+	if hyphens in typography and typography.hyphens is true
+		hyphens auto

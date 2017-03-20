@@ -1,0 +1,19 @@
+
+.form__field
+
+	form = typeof( $form ) == 'object' ? $form : {}
+	margin = typeof( form.margin ) == 'unit' ? form.margin : 16
+
+	&:after
+		content ''
+		display table
+		clear both
+
+	& + &
+		margin-top: ss( margin )
+
+	&--align-center
+		text-align center
+
+	&--align-right
+		text-align right

@@ -1,0 +1,7 @@
+
+.text__paragraph
+
+	typography = typeof( $typography ) == 'object' ? $typography : {}
+
+	& + &
+		margin-top: typeof( typography.margin ) == 'unit' ? typography.margin : 1.2em

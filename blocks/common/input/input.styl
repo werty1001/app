@@ -1,0 +1,29 @@
+
+/*!*
+ * Input
+ */
+
+.input
+	display block
+	width 100%
+	max-width 100%
+	text-transform none
+	line-height normal
+	overflow visible
+	outline none
+	padding 0
+	margin 0
+	border 0
+
+	&[type="number"]
+		&::-webkit-inner-spin-button,
+		&::-webkit-outer-spin-button
+			height auto
+
+	&[type="search"]
+		-webkit-appearance textfield
+		outline-offset -2px
+		
+		&::-webkit-search-cancel-button,
+		&::-webkit-search-decoration
+			-webkit-appearance none

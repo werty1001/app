@@ -1,0 +1,49 @@
+
+/*!*
+ * Section
+ */
+
+.section
+
+	media = typeof( $media ) == 'object' ? $media : {}
+	breakpoints = typeof( media.breakpoints ) == 'object' ? media.breakpoints : { xs: 1, sm: 544, md: 768, lg: 992, xl: 1150 }
+	sizes = keys( breakpoints )
+	section = typeof( $section ) == 'object' ? $section : {}
+	start = typeof( section.start ) == 'unit' ? section.start : 80
+	end = typeof( section.end ) == 'unit' ? section.end : 30
+	num = length( sizes )
+
+	for size, i in sizes
+	
+		step = ( ( start - end ) / num ) * i
+		val = (i + 1) == num ? start : end + step
+
+		if i > 0
+			+mq( size )
+
+				&:not(&--no-padding):not(&--no-padding-top)
+					padding-top ss( val )
+					
+				&:not(&--no-padding):not(&--no-padding-bottom)
+					padding-bottom ss( val )
+
+				&--double-padding:not(&--no-padding):not(&--no-padding-top)
+					padding-top ss( val * 2 )
+					
+				&--double-padding:not(&--no-padding):not(&--no-padding-bottom)
+					padding-bottom ss( val * 2 )
+
+		else
+
+			&:not(&--no-padding):not(&--no-padding-top)
+				padding-top ss( val )
+				
+			&:not(&--no-padding):not(&--no-padding-bottom)
+				padding-bottom ss( val )
+
+
+			&--double-padding:not(&--no-padding):not(&--no-padding-top)
+				padding-top ss( val * 2 )
+				
+			&--double-padding:not(&--no-padding):not(&--no-padding-bottom)
+				padding-bottom ss( val * 2 )

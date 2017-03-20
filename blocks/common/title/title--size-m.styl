@@ -1,0 +1,21 @@
+
+.title--size-m
+
+	typography = typeof( $typography ) == 'object' ? $typography : {}
+	media = typeof( $media ) == 'object' ? $media : {}
+	breakpoints = typeof( media.breakpoints ) == 'object' ? media.breakpoints : { xs: 1, sm: 544, md: 768, lg: 992, xl: 1150 }
+	sizes = keys( breakpoints )
+	start = typeof( typography.size_m ) == 'unit' ? typography.size_m : 28
+	num = length( sizes )
+	end = 20
+
+	for size, i in sizes
+	
+		step = ( ( start - end ) / num ) * i
+		val = (i + 1) == num ? start : end + step
+
+		if i > 0
+			+mq( size )
+				font-size ss( val )
+		else
+			font-size ss( val )
