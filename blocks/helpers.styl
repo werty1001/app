@@ -1,0 +1,199 @@
+
+/**
+ * Global variables
+ */
+
+
+// Unit - 1px | .1rem | .1em
+
+$unit = .1rem
+
+
+// Layout
+
+$layout = 1170
+
+
+// Grid
+
+$grid = {
+
+	flex: true,
+	columns: 12,
+	gutter: 30,
+	gap: 30
+
+}
+
+
+// Media
+
+$media = {
+
+	unit: 1px,
+
+	breakpoints: {
+
+		xs: 1,
+		sm: 544,
+		md: 768,
+		lg: 992,
+		xl: 1150
+
+	}
+
+}
+
+
+// Section
+
+$section = {
+	end: 30,
+	start: 80
+}
+
+
+// Colors
+
+$color = {
+
+	text: #252525,
+
+	border: #eee,
+	bg: #fff,
+	
+	link: #0645ad,
+	link_hover: #333,
+	link_visited: false,
+
+	bright: #c53e1c,
+	dim: #bbb
+
+}
+
+
+// Typography
+
+$typography = {
+	
+	text: 'Roboto',
+	title: false,
+
+	size: 15,
+	line: 1.5,
+	spacing: 1px,
+	hyphens: false,
+
+	margin: 1.2em,
+	
+	size_s: 24,
+	size_m: 28,
+	size_l: 36,
+	size_xl: 44
+
+}
+
+
+// Form
+
+$form = {
+	
+	margin: 20,
+	height: 44,
+	padding: 8
+
+}
+
+
+// Form field
+
+$form_field =
+
+	font-family inherit
+	font-size ss(14)
+	color #333
+	font-style normal
+	font-weight 400
+	
+	background-color #fff
+	border solid 1px #eee
+	border-radius 3px
+	
+	transition background .2s ease-in, border .2s ease-in, box-shadow .2s ease-in
+
+	&:focus
+		border-color #fa6600
+
+
+
+/**
+ * Mixins
+ */
+
+
+// Units
+
+ss( val = 1, unit = false )
+	if typeof( unit ) != 'unit'
+		unit = typeof( $unit ) == 'unit' ? $unit : 1px
+	floor( val * unit, 1 )
+
+
+// Media
+
+mq( min = false, max = false, custom = false )
+
+	media = typeof( $media ) == 'object' ? $media : {}
+	breakpoints = typeof( media.breakpoints ) == 'object' ? media.breakpoints : { xs: 2, sm: 544, md: 768, lg: 992, xl: 1150 }
+	unit = typeof( media.unit ) == 'unit' ? media.unit : 1px
+	sizes = keys( breakpoints )
+	query = ''
+
+	if min and min in sizes
+
+		min = breakpoints[min]
+
+	if min and typeof( min ) == 'unit'
+		
+		query += ( query == '' ? '' : ' and ' ) + '(min-width: %s)' % floor( min * unit, 1 )
+
+	if max and max in sizes
+
+		max = breakpoints[max] - 1
+
+	if max and typeof( max ) == 'unit'
+		
+		query += ( query == '' ? '' : ' and ' ) + '(max-width: %s)' % floor( max * unit, 1 )
+
+	if custom and typeof( custom ) == 'string'
+
+		query += ( query == '' ? '' : ' and ' ) + custom
+
+	if query
+		@media query
+			{block}
+
+
+// Position
+
+-pos( type, args )
+	i = 0
+	position: unquote( type )
+	for j in (1..8)
+		if length( args ) > i
+			if args[i] == auto
+				return
+			else
+				{args[i]}: args[i + 1] is a 'unit' ? args[i += 1] : ( args[i + 1] == auto ? auto : 0 )
+		i += 1
+
+abs()
+	-pos( 'absolute', arguments )
+
+fix()
+	-pos( 'fixed', arguments )
+
+rel()
+	-pos( 'relative', arguments )
+
+

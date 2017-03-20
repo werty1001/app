@@ -1,0 +1,211 @@
+-
+	BEMPUG.tagByName = {
+
+		html: 'html',
+		page: 'body',
+		button: 'button',
+		paragraph: 'p',
+		form: 'form',
+		input: 'input',
+		textarea: 'textarea',
+		img: 'img',
+		nav: 'nav',
+		pagination: 'nav',
+		header: 'header',
+		footer: 'footer',
+		iframe: 'iframe',
+		icon: 'i',
+		fa: 'i',
+		breadcrumbs: 'ol',
+		article: 'article'
+
+	};
+
+
+	// Logo
+
+	BEMPUG.beforeParse[ 'logo' ] = function( block ) {
+
+		if( typeof block.attributes.href === 'undefined' && page.path !== 'index' ) block.attributes.href = './index.html';
+
+	};
+
+
+	// Add microdata
+
+	const schema = function( block ) {
+
+		let itemtype = {
+			header: 'http://schema.org/WPHeader',
+			footer: 'http://schema.org/WPFooter',
+			page: 'http://schema.org/WebPage',
+			nav: 'http://schema.org/SiteNavigationElement',
+			pagination: 'http://schema.org/SiteNavigationElement/Pagination',
+			breadcrumbs: 'http://schema.org/BreadcrumbList'
+		};
+
+		if ( ! block.isElement && block.attributes.microdata !== false && global.app.microdata ) {
+			block.attributes.itemscope = true;
+			block.attributes.itemtype = itemtype[ block.name ];	
+		}
+
+	};
+
+	BEMPUG.afterParse[ 'nav' ] = schema;
+	BEMPUG.afterParse[ 'page' ] = schema;
+	BEMPUG.afterParse[ 'footer' ] = schema;
+	BEMPUG.afterParse[ 'header' ] = schema;
+	BEMPUG.afterParse[ 'pagination' ] = schema;
+	BEMPUG.afterParse[ 'breadcrumbs' ] = schema;
+
+
+	// Grid
+
+	const grid = function( block ) {
+
+		if ( block.name === 'grid' ) {
+
+			if( typeof block.data.p === 'undefined' ) block.data.p = false;
+			if( typeof block.data.e === 'undefined' ) block.data.e = 'page:layout';
+
+			return;
+		}
+
+		let classes = '', mods = {
+			c: 'center',
+			r: 'right',
+			l: 'left',
+			t: 'top',
+			m: 'middle',
+			b: 'bottom',
+			a: 'around',
+			bw: 'between',
+			ol: 'last',
+			of: 'first',
+			np: 'no-pull',
+			ng: 'no-gutter',
+			g: 'gap',
+			ng: 'del-gap'
+		};
+
+		block.data.e = Array.isArray( block.data.e ) ? block.data.e : [block.data.e];
+
+		Object.keys( block.data ).forEach( function( key ) {
+
+			if ( ['xs','sm','md','lg','xl','xxl'].indexOf( key ) === -1 ) return;
+
+			let array = block.data[key].split( '|' );
+
+			if ( block.name === 'col' ) {
+
+				let width = /^\d+$/.test( array[0] ) ? array[0] : false,
+					pos = array[1] ? array[1].split( ':' ) : [],
+					horizontal = pos[0] ? mods[ pos[0] ] : false,
+					vertical = pos[1] ? mods[ pos[1] ] : false,
+					mar = array[2] ? array[2].split( ':' ) : [],
+					offset = /^\d+$/.test( mar[0] ) ? mar[0] : /^\d+$/.test( mar[1] ) ? mar[1] : false,
+					gap = mods[ mar[0] ] || mods[ mar[1] ] || false,
+					pull = /^\d+$/.test( array[3] ) ? 'pull-' + array[3] : mods[ array[3] ],
+					push = /^\d+$/.test( array[4] ) ? 'push-' + array[4] : mods[ array[4] ];
+
+					classes += width      ? `.${key}-${width}`            : '';
+					classes += horizontal ? `.${key}-align-${horizontal}` : '';
+					classes += vertical   ? `.${key}-align-${vertical}`   : '';
+					classes += offset     ? `.${key}-offset-${offset}`    : '';
+					classes += pull       ? `.${key}-${pull}`             : '';
+					classes += push       ? `.${key}-${push}`             : '';
+
+					if ( gap ) block.data.e.push( `grid:${gap}-${key}` );
+			}
+
+			if ( block.name === 'row' ) {
+
+				let pos = array[0] ? array[0].split( ':' ) : [],
+					horizontal = pos[0] ? mods[ pos[0] ] : false,
+					vertical = pos[1] ? mods[ pos[1] ] : false,
+					gap = array[1] ? mods[ array[1] ] : false;
+
+					classes += horizontal ? `.${key}-align-${horizontal}` : '';
+					classes += vertical   ? `.${key}-align-${vertical}`   : '';
+
+					if ( gap ) block.data.e.push( `grid:${gap}-${key}` );
+			}
+
+		});
+
+		if ( typeof block.data.p === 'undefined' && ['grid','grid__row'].indexOf( block.parent.name ) !== -1 )
+			block.data.p = 'grid';
+
+		block.data.m = classes + ( typeof block.data.m === 'string' ? '.' + block.data.m : '' );
+
+	};
+
+	BEMPUG.beforeParse[ 'row' ] = grid;
+	BEMPUG.beforeParse[ 'col' ] = grid;
+	BEMPUG.beforeParse[ 'grid' ] = grid;
+
+
+	// Img
+
+	BEMPUG.beforeParse[ 'img' ] = function( block ) {
+
+		let src = block.attributes.src;
+
+		if( typeof block.attributes.alt === 'undefined' ) block.attributes.alt = '';
+
+		if ( global.isExternal( src ) ) return;
+
+		if( typeof src === 'undefined' ) {
+			block.attributes.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+			return;
+		}
+
+		src = src.charAt(0) === '/' ? src.slice(1) : src;
+		src = src.replace( /&amp;|&/g, BEMPUG.getCurrentBlock() );
+
+		if ( block.attributes.retina ) {
+
+			delete block.attributes.retina;
+
+			let array = src.split( '.' ),
+				retina = array[0] + '@2x.' + array.slice( 1 ).join( '.' ) + ' 2x';
+
+			block.attributes.srcset = global.paths.static + retina;
+
+		}
+
+		block.attributes.src = global.paths.static + src;
+
+	};
+
+
+	// Link
+
+	BEMPUG.beforeParse[ 'link' ] = function( block ) {
+
+		let href = ( typeof block.attributes.href === 'string' ) ? block.attributes.href : '';
+
+		block.data.b = Array.isArray( block.data.b ) ? block.data.b : [block.data.b];
+
+		if (
+			! global.webpack 
+			&& block.data.b.indexOf( 'lightbox' ) !== -1 
+			&& page.scripts.indexOf( 'jquery.lightbox.min.js' ) === -1 
+
+		) page.scripts.push( 'jquery.lightbox.min.js' );
+
+
+		if ( global.isExternal( href ) && typeof block.attributes.target === 'undefined' )
+			return block.attributes.target = '_blank';
+
+		href = href.replace( /&amp;|&/g, BEMPUG.getCurrentBlock() );
+
+		if ( /\.html+$/.test( href ) )
+			return block.attributes.href = './' + ( href.charAt(0) === '/' ? href.slice(1) : href );
+
+		if ( href.charAt(0) === '/' )
+			return block.attributes.href = global.paths.static + href.slice(1);
+
+		block.attributes.href = href;
+
+	};
