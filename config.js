@@ -1,4 +1,5 @@
 
+
 'use strict';
 
 
@@ -18,23 +19,24 @@ module.exports = {
 	},
 
 	options: {
+		requireLibs: false,
 		cssBundles: false,
 		jsBundles: false,
 		sourcemap: false,
-		babel: false,
-		requireLibs: false
+		babel: false
 	},
 
 	levels: {
 		common: 1,
-		develop: 2,
-		themes: 3
+		develop: 2
 	},
 
+	mainLevel: 'develop',
+
 	extnames: {
-		templates: 'pug',
-		scripts: 'js',
-		styles: 'styl'
+		templates: '.pug',
+		scripts: '.js',
+		styles: '.styl'
 	},
 
 	dist: {
@@ -76,7 +78,7 @@ module.exports = {
 		app: {}
 	},
 
-	used: {
+	use: {
 		assets: [],
 		symbol: [],
 		styles: [],
@@ -84,19 +86,18 @@ module.exports = {
 	},
 
 	add: {
-		page: '',
-		json: '',
-		style: '',
-		script: '',
-		template: '',
+		page: `extends ../blocks/layout\n\nblock data\n\n\t- const page = { path: '[name]', title: '', description: '', styles: [], scripts: [] };\n\nblock content\n\n\n\t= nnn\n\t// Header \n\n\t+header\n\n\n\t= nnn\n\t// Content \n\n\t+content\n\n\n\t= nnn\n\t// Footer \n\n\t+footer\n\n`,
+		style: `[comment]\n//.[name]`,
+		template: `mixin [name]( bem )\n\n\t+b( '[name]', bem )&attributes(attributes)\n\n\t\tblock\n`,
 		block: 'style:img:assets'
 	},
 
-	mainLevel: 'develop',
-
 	autoCreate: true,
-	autoIgnoreBlocks: [ 'grid' ],
+	autoCreateAdd: [ 'style' ],
+	autoCreateIgnore: [ 'symbol', 'grid', 'html', /fa-/i, /grid__/i ],
+	autoCreateCheckLevels: [ 'common' ],
 
 	assetsAttr: [ 'href', 'src', 'srcset' ]
 
 };
+

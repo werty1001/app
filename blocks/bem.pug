@@ -1,8 +1,6 @@
 -
 	BEMPUG.tagByName = {
 
-		html: 'html',
-		page: 'body',
 		button: 'button',
 		paragraph: 'p',
 		form: 'form',
@@ -153,7 +151,7 @@
 
 		if( typeof block.attributes.alt === 'undefined' ) block.attributes.alt = '';
 
-		if ( global.isExternal( src ) ) return;
+		if ( BEMPUG.isExternal( src ) ) return;
 
 		if( typeof src === 'undefined' ) {
 			block.attributes.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
@@ -170,11 +168,11 @@
 			let array = src.split( '.' ),
 				retina = array[0] + '@2x.' + array.slice( 1 ).join( '.' ) + ' 2x';
 
-			block.attributes.srcset = global.paths.static + retina;
+			block.attributes.srcset = global.paths.static + '/' + retina;
 
 		}
 
-		block.attributes.src = global.paths.static + src;
+		block.attributes.src = global.paths.static + '/' + src;
 
 	};
 
@@ -188,14 +186,14 @@
 		block.data.b = Array.isArray( block.data.b ) ? block.data.b : [block.data.b];
 
 		if (
-			! global.webpack 
+			! global.options.requireLibs
 			&& block.data.b.indexOf( 'lightbox' ) !== -1 
 			&& page.scripts.indexOf( 'jquery.lightbox.min.js' ) === -1 
 
 		) page.scripts.push( 'jquery.lightbox.min.js' );
 
 
-		if ( global.isExternal( href ) && typeof block.attributes.target === 'undefined' )
+		if ( BEMPUG.isExternal( href ) && typeof block.attributes.target === 'undefined' )
 			return block.attributes.target = '_blank';
 
 		href = href.replace( /&amp;|&/g, BEMPUG.getCurrentBlock() );
@@ -204,7 +202,7 @@
 			return block.attributes.href = './' + ( href.charAt(0) === '/' ? href.slice(1) : href );
 
 		if ( href.charAt(0) === '/' )
-			return block.attributes.href = global.paths.static + href.slice(1);
+			return block.attributes.href = global.paths.static + '/' + href.slice(1);
 
 		block.attributes.href = href;
 
