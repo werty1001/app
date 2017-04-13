@@ -81,6 +81,7 @@ $typography = {
 
 	size: 15,
 	line: 1.5,
+	weight: 400,
 	spacing: 1px,
 	hyphens: false,
 
@@ -105,26 +106,6 @@ $form = {
 }
 
 
-// Form field
-
-$form_field =
-
-	font-family inherit
-	font-size ss(14)
-	color #333
-	font-style normal
-	font-weight 400
-	
-	background-color #fff
-	border solid 1px #eee
-	border-radius 3px
-	
-	transition background .2s ease-in, border .2s ease-in, box-shadow .2s ease-in
-
-	&:focus
-		border-color #fa6600
-
-
 
 /**
  * Mixins
@@ -143,6 +124,13 @@ ss( val = 1, unit = false )
 	if typeof( unit ) != 'unit'
 		unit = typeof( $unit ) == 'unit' ? $unit : 1px
 	floor( val * unit, 1 )
+
+
+// Retina
+
+retina()
+	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)
+		{block}
 
 
 // Media

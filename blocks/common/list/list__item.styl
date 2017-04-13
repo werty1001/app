@@ -1,0 +1,18 @@
+
+.list__item
+
+	typography = typeof( $typography ) == 'object' ? $typography : {}
+
+	margin-top ss(15)
+
+	font-size 1em
+	line-height: typeof( typography.line ) == 'unit' ? typography.line : 1.4
+	
+	if hyphens in typography and typography.hyphens is true
+		hyphens auto
+
+	&--gap
+		margin-top ss(30)
+
+	&:first-child
+		margin-top 0

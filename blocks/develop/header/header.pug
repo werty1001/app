@@ -1,5 +1,8 @@
 mixin header( bem )
 
-	+b( 'header', bem )&attributes(attributes)
+	+b( 'header', bem, 'header' )(
+		itemscope=schema
+		itemtype=schema ? 'http://schema.org/WPHeader' : false
+	)&attributes(attributes)
 
 		block

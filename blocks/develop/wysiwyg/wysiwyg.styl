@@ -1,0 +1,202 @@
+
+/*!*
+ * Wysiwyg
+ */
+
+.wysiwyg
+
+	typography = typeof( $typography ) == 'object' ? $typography : {}
+	color = typeof( $color ) == 'object' ? $color : {}
+
+
+	mark
+		margin 0 3px
+		background #f3de91
+		box-shadow 0 0 0 2px @background
+		text-decoration none
+
+	sub,
+	sup
+		font-size 75%
+		line-height 0
+		position relative
+		vertical-align baseline
+
+	sub
+		bottom -0.25em
+
+	sup
+		top -0.5em
+
+	b,
+	strong
+		font-weight inherit
+
+	b,
+	strong
+		font-weight bolder
+
+	small
+		font-size 80%
+
+	big
+		font-size 125%
+
+	dfn,
+	cite
+		font-style italic
+
+	pre,
+	code,
+	kbd,
+	samp
+		font-family monospace, monospace
+		font-size 1em
+
+	abbr[title],
+	acronym[title]
+		cursor help
+		font-style italic
+		border-bottom none
+		text-decoration underline
+		text-decoration underline dotted
+
+	dl
+		max-width 50rem
+		margin 0 0 1.5em
+			
+		dt
+			font-weight bolder
+				
+		dd
+			margin 0 0 1.5em
+
+
+	hr
+		display block
+		height 1px
+		background: typeof( color.border ) == 'rgba' ? color.border : #eee
+		margin: ( typeof( typography.margin ) == 'unit' ? typography.margin : 1.2em ) 0
+		max-width 100%
+		overflow visible
+		border 0
+
+
+	for i in (1..6)
+		
+		start = 2
+		step  = .2
+		size  = ( ( start + step ) - ( i * step) )
+
+		h{i}
+			display block
+			font-size size * 1em
+			font-weight 700
+			line-height 1.25
+			margin: ( typeof( typography.margin ) == 'unit' ? typography.margin : 1.2em ) 0
+			
+			&:first-child
+				margin-top 0
+
+	p
+
+		margin 0
+		font-size 1em
+		line-height: typeof( typography.line ) == 'unit' ? typography.line : 1.4
+		
+		if hyphens in typography and typography.hyphens is true
+			hyphens auto
+
+		& + p
+			margin-top: typeof( typography.margin ) == 'unit' ? typography.margin : 1.2em
+
+	a
+
+		border 0
+		outline 0
+		color: typeof( color.link ) == 'rgba' ? color.link : #156ab9
+		text-decoration underline
+		background-color transparent
+		-webkit-text-decoration-skip objects
+		transition unquote('color') .4s
+
+		&:hover
+			cursor pointer
+			color: typeof( color.link_hover ) == 'rgba' ? color.link_hover : #333
+			text-decoration none
+
+		if typeof( color.link_visited ) == 'rgba'
+			&:visited
+				color: color.link_visited
+
+	img
+		display block
+		max-width 100%
+		height auto
+		border 0
+		
+	ul,
+	ol
+		list-style none
+		display block
+		margin: typeof( typography.margin ) == 'unit' ? typography.margin : 1.2em
+		padding 0
+		
+		ul,
+		ol
+			margin ss(15) 0
+		
+		li
+			position relative
+			padding 0 0 0 ss(20)
+
+			font-size 1em
+			line-height: typeof( typography.line ) == 'unit' ? typography.line : 1.4
+			
+			if hyphens in typography and typography.hyphens is true
+				hyphens auto
+
+			&:not(:first-child)
+				margin-top ss(15)
+
+			&:after
+				content ''
+				abs top ss(9) left
+				width ss(5)
+				height ss(5)
+				background-color #333
+				border-radius 1px
+	
+	ol
+		li
+			counter-increment step-counter
+			&:after
+				display none
+			&:before
+				content counter(step-counter)'.'
+				float left
+				margin 0 0 0 (-(ss(20)))
+				font-weight 700
+
+
+	table
+		width 100%
+		border-spacing 0
+		border-collapse collapse
+		border: solid 1px typeof( color.border ) == 'rgba' ? color.border : #eee
+		margin: ( typeof( typography.margin ) == 'unit' ? typography.margin : 1.2em ) 0
+
+		th
+			text-align left
+			font-weight 700
+			
+		tr
+			border-top: solid 1px typeof( color.border ) == 'rgba' ? color.border : #eee
+
+		td,
+		th
+			padding 1em 1.5em
+			vertical-align middle
+			border-left: solid 1px typeof( color.border ) == 'rgba' ? color.border : #eee
+			
+

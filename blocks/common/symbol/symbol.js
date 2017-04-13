@@ -1,7 +1,5 @@
 
-/**
- * Load symbol sprite
- */
+// Load symbol sprite
 
 (function ( body ) {
 

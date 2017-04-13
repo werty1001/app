@@ -1,0 +1,52 @@
+{
+
+	"items": [
+		{
+			"href": "index.html",
+			"text": "Home"
+		},
+		{
+			"href": "about.html",
+			"text": "About"
+		},
+		{
+			"href": "contacts.html",
+			"text": "Contacts"
+		}
+	],
+
+
+	"demo": [
+		{
+			"href": "/",
+			"text": "Home",
+			"mod": {
+				"item": "bolder",
+				"link": "pretty"
+			}
+		},
+		{
+			"href": "#",
+			"text": "About",
+			"sub": [
+				{
+					"href": "#",
+					"text": "Sub menu"
+				},
+				{
+					"href": "#",
+					"text": "Sub menu 2"
+				},
+				{
+					"href": "#",
+					"text": "Sub menu 3"
+				}
+			]
+		},
+		{
+			"text": "Contacts"
+		}
+	]
+
+
+}

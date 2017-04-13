@@ -1,5 +1,8 @@
 mixin footer( bem )
 
-	+b( 'footer', bem )&attributes(attributes)
+	+b( 'footer', bem, 'footer' )(
+		itemscope=schema
+		itemtype=schema ? 'http://schema.org/WPFooter' : false
+	)&attributes(attributes)
 
 		block

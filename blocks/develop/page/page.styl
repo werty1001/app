@@ -1,6 +1,4 @@
 
-@import './fonts/*'
-
 /*!*
  * Page
  */
@@ -21,7 +19,7 @@
 	color: typeof( color.text ) == 'rgba' ? color.text : #222
 	
 	line-height 1
-	font-weight 400
+	font-weight: typeof( typography.weight ) == 'unit' ? typography.weight : 400
 
 	-webkit-font-smoothing antialiased
 	font-smoothing antialiased

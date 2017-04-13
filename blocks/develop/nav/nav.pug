@@ -1,0 +1,62 @@
+mixin nav__item( prefix, value )
+
+	- var text = value.text || '';
+	- var href = value.href || false;
+
+	- var before = value.before || '';
+	- var after = value.after || '';
+
+	- var linkMod = value.mod ? ( value.mod.link ? value.mod.link : '' ) : '';
+	- var itemMod = value.sub ? '.sub' : '';
+	
+	- itemMod += value.mod ? ( value.mod.item ? value.mod.item : '' ) : '';
+	- itemMod += page.path === href ? '.active' : '';
+
+
+	+e( `${prefix}item`, itemMod )
+
+		!= before
+
+		+b( 'link', {e: `&:${prefix}link`, m: linkMod })(
+			href=href
+			itemprop= href && schema ? 'url' : false
+		)
+
+			if href && schema
+				span(itemprop='name')= text
+			else
+				= text
+
+		!= after
+
+		block
+
+
+mixin nav( bem, name )
+
+	- var data = global.blocks.nav[ name ? name : 'demo' ];
+
+	+b( 'nav', bem, 'nav' )(
+
+		itemscope=schema
+		itemtype=schema ? 'http://schema.org/SiteNavigationElement' : false
+
+	)&attributes(attributes)
+
+		if Array.isArray( data ) && data.length > 0
+
+			+e( 'items', {t: 'ul'} )
+
+				each value in data
+
+					+nav__item( '', value )
+
+						if Array.isArray( value.sub ) && value.sub.length > 0
+
+							+e( 'sub-items', {t: 'ul'} )
+
+								each val in value.sub
+
+									+nav__item( 'sub-', val )
+
+				block

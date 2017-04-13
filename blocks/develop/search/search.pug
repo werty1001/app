@@ -1,0 +1,20 @@
+mixin search( bem )
+
+	+b( 'search', bem, 'form' )(method='POST'
+		itemscope=schema
+		itemtype=schema ? 'http://schema.org/SearchAction' : false
+		itemprop=schema ? 'potentialAction' : false
+	)&attributes(attributes)
+
+		if schema
+			meta(itemprop='target' content=`http://${global.app.domain}/?s={s}`)
+
+		+b( 'input', { e: '&' } )(
+			type='search' name='input_search' placeholder='Search ...'
+			itemprop=schema ? 'query-input' : false
+			required
+		)
+
+		+b( 'button', { e: '&' } ) Find
+
+		block
