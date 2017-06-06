@@ -86,7 +86,7 @@ module.exports = {
 	},
 
 	add: {
-		page: `extends ../blocks/layout\n\nblock data\n\n\t- const page = { path: '[name]', title: '', description: '', styles: [], scripts: [] };\n\nblock content\n\n\n\t= nnn\n\t// Header \n\n\t+header\n\n\n\t= nnn\n\t// Content \n\n\t+content\n\n\n\t= nnn\n\t// Footer \n\n\t+footer\n\n`,
+		page: `extends ../blocks/layout\n\nblock data\n\t-\n\t\tconst page = {\n\n\t\t\tpath: '[name]',\n\t\t\ttitle: '',\n\t\t\tdescription: '',\n\t\t\tstyles: [],\n\t\t\tscripts: []\n\n\t\t};\n\nblock content\n\n\n\t= nnn\n\t// Header \n\n\t+header\n\n\n\t= nnn\n\t// Content \n\n\t+content\n\n\n\t= nnn\n\t// Footer \n\n\t+footer\n\n`,
 		style: `[comment]\n//.[name]`,
 		template: `mixin [name]( bem )\n\n\t+b( '[name]', bem )&attributes(attributes)\n\n\t\tblock\n`,
 		block: 'style:img:assets'
@@ -94,7 +94,7 @@ module.exports = {
 
 	autoCreate: true,
 	autoCreateAdd: [ 'style' ],
-	autoCreateIgnore: [ 'symbol', 'grid', 'text', /section--no-padding/i, 'html', /fa-/i, /grid__/i, /nav__/i ],
+	autoCreateIgnore: [ 'symbol', 'html', 'grid', 'text', /section--no-padding/i, /fa-/i, /grid__/i ],
 	autoCreateCheckLevels: [ 'common' ],
 
 	assetsAttr: [ 'href', 'src', 'srcset' ]
