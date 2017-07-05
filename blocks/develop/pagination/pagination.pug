@@ -7,7 +7,7 @@ mixin pagination( bem )
 
 		+e( 'items' )
 
-			each val in [1,2,3,4,5,6,7,8,9,10]
+			each val in [1,2,3,4,5,6,7]
 
 				+b( 'link', {e: `&:item|${val === 3 ? 'active' : ''}`} )(
 					itemprop=schema ? 'url' : false

@@ -1,0 +1,55 @@
+
+.slick__arrow
+
+	color = typeof( $color ) == 'object' ? $color : {}
+	arrow = typeof( color.border ) == 'rgba' ? color.border : #eee
+	bright = typeof( color.bright ) == 'rgba' ? color.bright : #c53e1c
+
+
+	position relative
+	font-size 0
+
+	width ss(36)
+	height @width
+	background-color #fff
+	border solid 1px arrow
+	border-radius 2px
+
+	transition border .4s , opacity .4s	
+	cursor pointer
+
+
+	&.slick-disabled
+		opacity .1
+		pointer-events none
+
+
+	&:after
+		content ''
+		display block
+		abs top 50%
+		margin-top -1px
+		width ss(10)
+		height @width
+		border solid arrow
+		z-index 3
+		transition border .4s
+		
+		.prev&
+			left 50%
+			border-width 2px 0 0 2px
+			margin-left ss(1)
+			transform rotate(-45deg) translate(0,-50%)
+
+		.next&
+			right 50%
+			margin-right ss(1)
+			border-width 2px 2px 0 0
+			transform rotate(45deg) translate(0,-50%)
+
+
+	&:hover
+		border-color bright
+		&:after
+			border-color bright
+

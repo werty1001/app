@@ -1,6 +1,7 @@
 -
 	BEMPUG.beforeParse[ 'button' ] = function( block ) {
 
-		if ( typeof block.data.t === 'undefined' ) block.data.t = block.attributes.href ? 'a' : 'button';
+		if ( ! block.isElement && typeof block.data.t === 'undefined' )
+			block.data.t = block.attributes.href ? 'a' : 'button';
 
 	};

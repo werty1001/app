@@ -7,6 +7,8 @@
 
 	typography = typeof( $typography ) == 'object' ? $typography : {}
 	color = typeof( $color ) == 'object' ? $color : {}
+	border = typeof( color.border ) == 'rgba' ? color.border : #eee
+	margin = typeof( typography.margin ) == 'unit' ? typography.margin : 1.2em
 
 
 	mark
@@ -75,8 +77,8 @@
 	hr
 		display block
 		height 1px
-		background: typeof( color.border ) == 'rgba' ? color.border : #eee
-		margin: ( typeof( typography.margin ) == 'unit' ? typography.margin : 1.2em ) 0
+		background border
+		margin margin 0
 		max-width 100%
 		overflow visible
 		border 0
@@ -93,7 +95,7 @@
 			font-size size * 1em
 			font-weight 700
 			line-height 1.25
-			margin: ( typeof( typography.margin ) == 'unit' ? typography.margin : 1.2em ) 0
+			margin margin 0
 			
 			&:first-child
 				margin-top 0
@@ -108,7 +110,7 @@
 			hyphens auto
 
 		& + p
-			margin-top: typeof( typography.margin ) == 'unit' ? typography.margin : 1.2em
+			margin-top margin
 
 	a
 
@@ -139,14 +141,14 @@
 	ol
 		list-style none
 		display block
-		margin: typeof( typography.margin ) == 'unit' ? typography.margin : 1.2em
+		margin margin
 		padding 0
 		
 		ul,
 		ol
 			margin ss(15) 0
 		
-		li
+		& > li
 			position relative
 			padding 0 0 0 ss(20)
 
@@ -168,7 +170,7 @@
 				border-radius 1px
 	
 	ol
-		li
+		& > li
 			counter-increment step-counter
 			&:after
 				display none
@@ -183,20 +185,20 @@
 		width 100%
 		border-spacing 0
 		border-collapse collapse
-		border: solid 1px typeof( color.border ) == 'rgba' ? color.border : #eee
-		margin: ( typeof( typography.margin ) == 'unit' ? typography.margin : 1.2em ) 0
+		border solid 1px border
+		margin margin 0
 
 		th
 			text-align left
 			font-weight 700
 			
 		tr
-			border-top: solid 1px typeof( color.border ) == 'rgba' ? color.border : #eee
+			border-top solid 1px border
 
 		td,
 		th
 			padding 1em 1.5em
 			vertical-align middle
-			border-left: solid 1px typeof( color.border ) == 'rgba' ? color.border : #eee
+			border-left solid 1px border
 			
 

@@ -21,10 +21,6 @@ include /core/temp/blocks
 - var schema = global.app.microdata;
 
 
-//- Set default tags
-
-- BEMPUG.tagByName = { fa: 'i', icon: 'i', form: 'form', select: 'select', input: 'input', textarea: 'textarea', paragraph: 'p', iframe: 'iframe', article: 'article' };
-
 
 //- Layout
 
@@ -32,7 +28,7 @@ if !page
 	block content
 else
 	doctype
-	+b( 'html', 'no-js', 'html' )(lang=global.app.lang)
+	html(lang=global.app.lang)
 		head
 			meta(charset='utf-8')
 			meta(http-equiv='X-UA-Compatible' content='IE=edge')
@@ -61,12 +57,6 @@ else
 			// Styles 
 			each href in page.styles
 				link(rel='stylesheet' href=( BEMPUG.isExternal( href ) ? href : global.paths.styles + '/' + href ))
-
-			if global.app.preloader
-				= n
-
-				// Hide preloader if no JS 
-				noscript: style .page__preloader{display:none;}
 
 
 			if !global.isDevelopment && global.head.favicons
@@ -130,15 +120,6 @@ else
 		)
 
 
-			//- Preloader
-
-			if global.app.preloader
-
-				= nn
-				// Preloader 
-				+b( 'preloader', {e: '&|active'} )
-
-
 			//- Content
 
 			block content
@@ -147,7 +128,7 @@ else
 			//- Scripts
 			= nnn
 
-			if global.app.jquery
+			if page.jquery || global.app.jquery
 
 				// jQuery 
 				script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')

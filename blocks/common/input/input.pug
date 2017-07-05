@@ -1,0 +1,6 @@
+-
+	BEMPUG.beforeParse[ 'input' ] = function( block ) {
+
+		if ( ! block.isElement && typeof block.data.t === 'undefined' ) block.data.t = 'input';
+
+	};

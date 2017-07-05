@@ -1,0 +1,35 @@
+
+.slick__dots
+
+	color = typeof( $color ) == 'object' ? $color : {}
+	border = typeof( color.border ) == 'rgba' ? color.border : #eee
+	bright = typeof( color.bright ) == 'rgba' ? color.bright : #c53e1c
+
+	display block
+	list-style none
+	padding 0
+	margin 0
+	text-align center
+	margin-top ss(35)
+	
+	button
+		display none
+		
+	li
+		display inline-block
+		width ss(16)
+		height @width
+		margin ss(5)
+		border solid 4px transparent
+		box-shadow 0 0 0 1px border, inset 0 0 0 10px border
+		border-radius 50%
+		transition box-shadow .4s
+		
+		&:hover
+			cursor pointer
+			box-shadow 0 0 0 1px border, inset 0 0 0 10px bright
+		
+		&.slick-active
+			pointer-events none
+			box-shadow 0 0 0 1px bright, inset 0 0 0 10px bright
+

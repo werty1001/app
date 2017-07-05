@@ -28,7 +28,8 @@ module.exports = {
 
 	levels: {
 		common: 1,
-		develop: 2
+		develop: 2,
+		plugins: 3
 	},
 
 	mainLevel: 'develop',
@@ -94,8 +95,8 @@ module.exports = {
 
 	autoCreate: true,
 	autoCreateAdd: [ 'style' ],
-	autoCreateIgnore: [ 'symbol', 'html', 'grid', 'text', /section--no-padding/i, /fa-/i, /grid__/i ],
-	autoCreateCheckLevels: [ 'common' ],
+	autoCreateIgnore: [ 'symbol', 'grid', /section--no-padding/i, /fa-/i, /grid__/i, /--active/i ],
+	autoCreateCheckLevels: [ 'common', 'plugins' ],
 
 	assetsAttr: [ 'href', 'src', 'srcset' ]
 

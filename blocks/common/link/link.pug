@@ -1,19 +1,20 @@
 -
 	BEMPUG.beforeParse[ 'link' ] = function( block ) {
 
-		let href = ( typeof block.attributes.href === 'string' ) ? block.attributes.href : '';
-
-		block.data.b = Array.isArray( block.data.b ) ? block.data.b : [block.data.b];
-
 		if ( typeof block.data.t === 'undefined' ) block.data.t = block.attributes.href ? 'a' : 'span';
 
-		if (
-			! global.options.requireLibs
-			&& block.data.b.indexOf( 'lightbox' ) !== -1 
-			&& page.scripts.indexOf( 'jquery.lightbox.min.js' ) === -1 
+		if ( block.attributes['data-lightbox'] ) {
 
-		) page.scripts.push( 'jquery.lightbox.min.js' );
+			block.data.m = ( block.data.m ? block.data.m : '' ) + '.lightbox';
 
+			let lightbox = 'jquery.lightbox.min.js';
+
+			page.jquery = true;
+
+			if ( ! global.options.requireLibs && page.scripts.indexOf( lightbox ) === -1 ) page.scripts.push( lightbox );
+		}
+
+		let href = ( typeof block.attributes.href === 'string' ) ? block.attributes.href : '';
 
 		if ( BEMPUG.isExternal( href ) && typeof block.attributes.target === 'undefined' )
 			return block.attributes.target = '_blank';

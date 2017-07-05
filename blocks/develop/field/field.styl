@@ -1,9 +1,7 @@
 
 .field
 
-	form = typeof( $form ) == 'object' ? $form : {}
-	height = typeof( form.height ) == 'unit' ? form.height : 44
-	padding = typeof( form.padding ) == 'unit' ? form.padding : 8
+	color = typeof( $color ) == 'object' ? $color : {}
 
 	font-family inherit
 	font-size ss(14)
@@ -12,54 +10,22 @@
 	font-weight 400
 	
 	background-color #fff
-	border solid 1px #eee
+	border: solid 1px typeof( color.border ) == 'rgba' ? color.border : #eee
 	border-radius 3px
 	
 	transition background .2s ease-in, border .2s ease-in, box-shadow .2s ease-in
 
+
 	&:focus
-		border-color #fa6600
-
-	
-	&.input
-		height ss( height )
-		padding 0 ss( padding * 2 )
-		
-
-	&.textarea
-		resize vertical
-		vertical-align top
-		line-height 1.15
-		min-height ss(120)
-		padding ss( padding * 2 )
+		border-color: typeof( color.bright ) == 'rgba' ? color.bright : #c53e1c
 
 
-	&.input
-	&.textarea
-
-		&::placeholder
-			font-family inherit
-			color alpha( @color, 50% )
-			font-size @font-size
-			font-style normal
-			font-weight 400
-			text-overflow ellipsis
-			opacity 1
-
-
-	&.select
-		height ss( height )
-		padding 0 ss( 25, 1px ) 0 ss( padding * 2 )
-
-		background-image b64('img/select.svg')
-		background-repeat no-repeat
-		background-position right center
-
-		text-indent 0.01px
-		text-overflow ''
-		appearance none
-		cursor pointer
-
-		&::-ms-expand
-			display none
+	&::placeholder
+		font-family inherit
+		color alpha( @color, 50% )
+		font-size @font-size
+		font-style normal
+		font-weight 400
+		text-overflow ellipsis
+		opacity 1
 

@@ -1,0 +1,6 @@
+-
+	BEMPUG.beforeParse[ 'paragraph' ] = function( block ) {
+
+		if ( ! block.isElement && typeof block.data.t === 'undefined' ) block.data.t = 'p';
+
+	};

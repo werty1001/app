@@ -1,4 +1,4 @@
-mixin search( bem )
+mixin search( bem, placeholder )
 
 	+b( 'search', bem, 'form' )(method='POST'
 		itemscope=schema
@@ -10,11 +10,11 @@ mixin search( bem )
 			meta(itemprop='target' content=`http://${global.app.domain}/?s={s}`)
 
 		+b( 'input', { e: '&' } )(
-			type='search' name='input_search' placeholder='Search ...'
+			type='search' name='input_search' placeholder=placeholder
 			itemprop=schema ? 'query-input' : false
 			required
 		)
 
-		+b( 'button', { e: '&' } ) Find
+		+b( 'button', { e: '&' } )
 
 		block
