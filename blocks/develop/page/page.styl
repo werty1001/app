@@ -32,7 +32,6 @@ html
 .page
 
 	typography = typeof( $typography ) == 'object' ? $typography : {}
-	color = typeof( $color ) == 'object' ? $color : {}
 
 	display block
 	width 100%
@@ -42,7 +41,7 @@ html
 
 	font-family: ( typeof( typography.text ) == 'string' ? typography.text unquote( ',' ) : unquote( '' ) ) -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue'
 	font-size: ss( typeof( typography.size ) == 'unit' ? typography.size : 15 )
-	color: typeof( color.text ) == 'rgba' ? color.text : #222
+	color $c_text
 	
 	line-height 1
 	font-weight: typeof( typography.weight ) == 'unit' ? typography.weight : 400
@@ -50,5 +49,5 @@ html
 	-webkit-font-smoothing antialiased
 	font-smoothing antialiased
 
-	background-color: typeof( color.bg ) == 'rgba' ? color.bg : #fff
+	background-color #fff
 

@@ -6,9 +6,10 @@
 .wysiwyg
 
 	typography = typeof( $typography ) == 'object' ? $typography : {}
-	color = typeof( $color ) == 'object' ? $color : {}
-	border = typeof( color.border ) == 'rgba' ? color.border : #eee
 	margin = typeof( typography.margin ) == 'unit' ? typography.margin : 1.2em
+	border = $c_border
+	lineheight = typeof( typography.line ) == 'unit' ? typography.line : 1.4
+	hyphens = ( hyphens in typography and typography.hyphens is true )
 
 
 	mark
@@ -104,9 +105,9 @@
 
 		margin 0
 		font-size 1em
-		line-height: typeof( typography.line ) == 'unit' ? typography.line : 1.4
+		line-height lineheight
 		
-		if hyphens in typography and typography.hyphens is true
+		if hyphens
 			hyphens auto
 
 		& + p
@@ -116,20 +117,20 @@
 
 		border 0
 		outline 0
-		color: typeof( color.link ) == 'rgba' ? color.link : #156ab9
+		color $c_link
 		text-decoration underline
 		background-color transparent
 		-webkit-text-decoration-skip objects
-		transition unquote('color') .4s
+		transition color .3s
 
 		&:hover
 			cursor pointer
-			color: typeof( color.link_hover ) == 'rgba' ? color.link_hover : #333
+			color $c_link_hover
 			text-decoration none
 
-		if typeof( color.link_visited ) == 'rgba'
+		if typeof( $c_link_visited ) == 'rgba'
 			&:visited
-				color: color.link_visited
+				color $c_link_visited
 
 	img
 		display block
@@ -153,9 +154,9 @@
 			padding 0 0 0 ss(20)
 
 			font-size 1em
-			line-height: typeof( typography.line ) == 'unit' ? typography.line : 1.4
+			line-height lineheight
 			
-			if hyphens in typography and typography.hyphens is true
+			if hyphens
 				hyphens auto
 
 			&:not(:first-child)

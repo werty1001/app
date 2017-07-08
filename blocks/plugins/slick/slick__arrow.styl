@@ -1,10 +1,8 @@
 
 .slick__arrow
 
-	color = typeof( $color ) == 'object' ? $color : {}
-	arrow = typeof( color.border ) == 'rgba' ? color.border : #eee
-	bright = typeof( color.bright ) == 'rgba' ? color.bright : #c53e1c
-
+	color_default = $c_border
+	color_active = $c_bright
 
 	position relative
 	font-size 0
@@ -12,7 +10,7 @@
 	width ss(36)
 	height @width
 	background-color #fff
-	border solid 1px arrow
+	border solid 1px color_default
 	border-radius 2px
 
 	transition border .4s , opacity .4s	
@@ -31,7 +29,7 @@
 		margin-top -1px
 		width ss(10)
 		height @width
-		border solid arrow
+		border solid color_default
 		z-index 3
 		transition border .4s
 		
@@ -49,7 +47,7 @@
 
 
 	&:hover
-		border-color bright
+		border-color color_active
 		&:after
-			border-color bright
+			border-color color_active
 

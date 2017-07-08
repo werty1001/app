@@ -1,10 +1,7 @@
 
-.form__field
+.form__field--double-margin
 
 	form = typeof( $form ) == 'object' ? $form : {}
 	margin = typeof( form.margin ) == 'unit' ? form.margin : 16
 	
-	margin-top ss( margin )
-	
-	&:first-child
-		margin-top 0
+	margin-top ss( margin * 2 )

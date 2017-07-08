@@ -95,7 +95,7 @@ module.exports = {
 
 	autoCreate: true,
 	autoCreateAdd: [ 'style' ],
-	autoCreateIgnore: [ 'symbol', 'grid', /section--no-padding/i, /fa-/i, /grid__/i, /--active/i ],
+	autoCreateIgnore: [ 'symbol', 'grid', /section--small-padding/i, /section--no-padding/i, /fa-/i, /grid__/i, /--active/i ],
 	autoCreateCheckLevels: [ 'common', 'plugins' ],
 
 	assetsAttr: [ 'href', 'src', 'srcset' ]

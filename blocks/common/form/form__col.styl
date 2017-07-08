@@ -4,15 +4,11 @@
 	form = typeof( $form ) == 'object' ? $form : {}
 	margin = typeof( form.margin ) == 'unit' ? form.margin : 16
 
-	+mq(0,'sm')
+	position relative
+	min-height 1px
 
-		& + &
-			margin-top ss( margin )
-
-	+mq('sm')
-		width 50%
-		float left
-		padding 0 ss( margin / 2 ) 0 0
-
-		&:nth-child(2n)
-			padding 0 0 0 ss( margin / 2 )
+	flex-grow 1
+	flex-basis 0
+	max-width 100%
+	
+	padding 0 0 0 ss( margin )

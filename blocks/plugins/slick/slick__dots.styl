@@ -1,9 +1,8 @@
 
 .slick__dots
 
-	color = typeof( $color ) == 'object' ? $color : {}
-	border = typeof( color.border ) == 'rgba' ? color.border : #eee
-	bright = typeof( color.bright ) == 'rgba' ? color.bright : #c53e1c
+	color_default = $c_border
+	color_active = $c_bright
 
 	display block
 	list-style none
@@ -21,15 +20,15 @@
 		height @width
 		margin ss(5)
 		border solid 4px transparent
-		box-shadow 0 0 0 1px border, inset 0 0 0 10px border
+		box-shadow 0 0 0 1px color_default, inset 0 0 0 10px color_default
 		border-radius 50%
 		transition box-shadow .4s
 		
 		&:hover
 			cursor pointer
-			box-shadow 0 0 0 1px border, inset 0 0 0 10px bright
+			box-shadow 0 0 0 1px color_default, inset 0 0 0 10px color_active
 		
 		&.slick-active
 			pointer-events none
-			box-shadow 0 0 0 1px bright, inset 0 0 0 10px bright
+			box-shadow 0 0 0 1px color_active, inset 0 0 0 10px color_active
 

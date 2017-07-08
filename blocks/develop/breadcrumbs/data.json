@@ -1,11 +1,37 @@
 {
 
+
 	"index": [
 		{
 			"href": "index",
-			"name": "Home"
+			"name": "Главная"
 		}
 	],
+
+
+	"contacts": [
+		{
+			"href": "index",
+			"name": "Главная"
+		},
+		{
+			"href": "contacts",
+			"name": "Контакты"
+		}
+	],
+
+
+	"about": [
+		{
+			"href": "index",
+			"name": "Главная"
+		},
+		{
+			"href": "about",
+			"name": "О компании"
+		}
+	],
+
 
 	"demo": [
 		{

@@ -13,37 +13,29 @@
 	end = typeof( section.end ) == 'unit' ? section.end : 30
 	num = length( sizes )
 
+	&--small-padding
+		padding: ss( typeof( section.small ) == 'unit' ? section.small : 40 ) 0
+
 	for size, i in sizes
 	
 		step = ( ( start - end ) / num ) * i
 		val = (i + 1) == num ? start : end + step
 
 		if i > 0
+
 			+mq( size )
 
-				&:not(&--no-padding):not(&--no-padding-top)
+				&:not(&--no-padding):not(&--small-padding):not(&--no-padding-top)
 					padding-top ss( val )
 					
-				&:not(&--no-padding):not(&--no-padding-bottom)
+				&:not(&--no-padding):not(&--small-padding):not(&--no-padding-bottom)
 					padding-bottom ss( val )
-
-				&--double-padding:not(&--no-padding):not(&--no-padding-top)
-					padding-top ss( val * 2 )
-					
-				&--double-padding:not(&--no-padding):not(&--no-padding-bottom)
-					padding-bottom ss( val * 2 )
 
 		else
 
-			&:not(&--no-padding):not(&--no-padding-top)
+			&:not(&--no-padding):not(&--small-padding):not(&--no-padding-top)
 				padding-top ss( val )
 				
-			&:not(&--no-padding):not(&--no-padding-bottom)
+			&:not(&--no-padding):not(&--small-padding):not(&--no-padding-bottom)
 				padding-bottom ss( val )
 
-
-			&--double-padding:not(&--no-padding):not(&--no-padding-top)
-				padding-top ss( val * 2 )
-				
-			&--double-padding:not(&--no-padding):not(&--no-padding-bottom)
-				padding-bottom ss( val * 2 )

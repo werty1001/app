@@ -10,7 +10,7 @@ mixin nav__item( prefix, value )
 	- var itemMod = value.sub ? '.sub' : '';
 	
 	- itemMod += value.mod ? ( value.mod.item ? value.mod.item : '' ) : '';
-	- itemMod += page.path === href ? '.active' : '';
+	- itemMod += ( page.path + '.html' ) === href ? '.active' : '';
 
 
 	+e( `${prefix}item`, itemMod )

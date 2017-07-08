@@ -1,10 +1,10 @@
 
 .link--pretty
 	
-	color = typeof( $color ) == 'object' ? $color : {}
+	link = typeof( $c_link ) == 'rgba' ? $c_link : #0645ad
 
 	text-decoration none
-	border-bottom: solid 1px alpha( typeof( color.link ) == 'rgba' ? color.link : #0858e4, 30% )
-	
+	border-bottom solid 1px alpha( link, 30% )
+
 	&:hover
-		border-color: alpha( typeof( color.link_hover ) == 'rgba' ? color.link_hover : #333, 50% )
+		border-color alpha( link, 50% )

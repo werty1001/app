@@ -1,8 +1,6 @@
 
 .field
 
-	color = typeof( $color ) == 'object' ? $color : {}
-
 	font-family inherit
 	font-size ss(14)
 	color #333
@@ -10,14 +8,14 @@
 	font-weight 400
 	
 	background-color #fff
-	border: solid 1px typeof( color.border ) == 'rgba' ? color.border : #eee
+	border solid 1px $c_border
 	border-radius 3px
 	
 	transition background .2s ease-in, border .2s ease-in, box-shadow .2s ease-in
 
 
 	&:focus
-		border-color: typeof( color.bright ) == 'rgba' ? color.bright : #c53e1c
+		border-color $c_bright
 
 
 	&::placeholder
