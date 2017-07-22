@@ -1,0 +1,20 @@
+mixin social( bem, data )
+
+	+b( 'social', bem )&attributes(attributes)
+
+		each val in data.items
+
+			- var item = global.blocks.social.list[ val ] || {};
+
+			+b( 'link', {e: `&|${ data.modifier ? item.modifier : '' }`, p: 0} )(href=item.href)
+
+				if data.symbol
+
+					+b( 'icon', {t: 'svg', e: '&'} )
+						use(xlink:href=`#social__${item.icon}`)
+
+				else
+
+					+b( 'icon', {t: 'svg', e: '&'} )(viewBox=data.viewBox)!= item.svg
+
+		block

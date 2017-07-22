@@ -1,6 +1,6 @@
-mixin breadcrumbs( bem, page )
+mixin breadcrumbs( bem, last )
 
-	- var data = global.blocks.breadcrumbs[ page ? page : 'demo' ];
+	- var data = global.blocks.breadcrumbs[ page.path ? page.path : 'demo' ];
 
 	+b( 'breadcrumbs', bem, 'ol' )(
 
@@ -38,6 +38,8 @@ mixin breadcrumbs( bem, page )
 
 				else
 
-					+e( 'item' )= val.name
+					if last
+
+						+e( 'item' )= val.name
 
 		block

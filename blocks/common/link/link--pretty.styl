@@ -2,9 +2,11 @@
 .link--pretty
 	
 	link = typeof( $c_link ) == 'rgba' ? $c_link : #0645ad
+	link_hover = typeof( $c_link_hover ) == 'rgba' ? $c_link_hover : #333
 
 	text-decoration none
 	border-bottom solid 1px alpha( link, 30% )
+	transition color .3s, border .3s
 
 	&:hover
-		border-color alpha( link, 50% )
+		border-color alpha( link_hover, 50% )

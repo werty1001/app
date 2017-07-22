@@ -1,0 +1,12 @@
+mixin checkbox( bem )
+
+	- var data = BEMPUG.isObject( bem ) ? bem : {m: bem};
+	- if ( attributes.disabled ) data.m = ( data.m ? data.m : '' ) + '.disabled';
+
+	+b( 'checkbox', data )
+		+e( 'label', {t: 'label'} )
+			input&attributes(attributes)
+			+e( 'icon', {t: 'i'} )
+			if block
+				+e( 'text' )
+					block

@@ -3,17 +3,17 @@
 
 (function ( body ) {
 
-	var link = __webpackSymbol__,
+	var link = body.dataset.symbol || __webpackSymbol__,
 		data, xhr, lastMod, storageLastMod, storage;
 
-		if ( ! body || ! link ) return;
+		if ( ! link ) return;
 
 		lastMod = +link.split( '?ver=' )[1];
-		storage = localStorage.getItem( 'symbolSprite'  );
+		storage = localStorage.getItem( 'symbolSprite' );
 		storageLastMod = +localStorage.getItem( 'lastModSymbol' );
 
 
-		if ( lastMod === storageLastMod && storage ) {
+		if ( storage && lastMod === storageLastMod  ) {
 
 			body.insertAdjacentHTML( 'afterbegin', storage );
 
@@ -23,7 +23,9 @@
 			xhr.open( 'GET', link, true );
 			xhr.onreadystatechange = function() {
 
-				if( this.readyState !== 4 || this.status === 404 || this.status === 500 ) return;
+				if ( this.readyState !== 4 ) return;
+
+				if ( this.status !== 200 ) return console.log( xhr.responseText );
 
 				data = xhr.responseText;
 

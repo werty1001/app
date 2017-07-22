@@ -3,7 +3,7 @@
 
 	"index": [
 		{
-			"href": "index",
+			"href": "index.html",
 			"name": "Главная"
 		}
 	],
@@ -11,11 +11,11 @@
 
 	"contacts": [
 		{
-			"href": "index",
+			"href": "index.html",
 			"name": "Главная"
 		},
 		{
-			"href": "contacts",
+			"href": "contacts.html",
 			"name": "Контакты"
 		}
 	],
@@ -23,12 +23,36 @@
 
 	"about": [
 		{
-			"href": "index",
+			"href": "index.html",
 			"name": "Главная"
 		},
 		{
-			"href": "about",
+			"href": "about.html",
 			"name": "О компании"
+		}
+	],
+
+
+	"service": [
+		{
+			"href": "index.html",
+			"name": "Главная"
+		},
+		{
+			"href": "service.html",
+			"name": "Услуги"
+		}
+	],
+
+
+	"portfolio": [
+		{
+			"href": "index.html",
+			"name": "Главная"
+		},
+		{
+			"href": "portfolio.html",
+			"name": "Портфолио"
 		}
 	],
 

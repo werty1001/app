@@ -2,3 +2,17 @@
 .breadcrumbs__item
 	display inline-block
 	vertical-align top
+
+	font-size ss(12)
+	color #777
+
+	&:after
+		content ''
+		display inline-block
+		vertical-align middle
+		width ss(6)
+		height @width
+		border solid #888
+		border-width 0 0 2px 2px
+		margin 0 ss(6)
+		transform rotate(-135deg)

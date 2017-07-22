@@ -21,6 +21,11 @@ include /core/temp/blocks
 - var schema = global.app.microdata;
 
 
+//- Body symbol
+
+- var bodySymbol = false;
+
+
 
 //- Layout
 
@@ -117,6 +122,7 @@ else
 		+b( 'page', page.bem, 'body' )(
 			itemscope=schema
 			itemtype=schema ? 'http://schema.org/WebPage' : false
+			data-symbol= ( ! global.isDevelopment && bodySymbol ) ? `${global.paths.img}/symbol.svg?ver=${new Date().getTime()}` : false
 		)
 
 
