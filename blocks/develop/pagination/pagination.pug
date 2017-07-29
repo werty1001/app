@@ -11,7 +11,7 @@ mixin pagination( bem )
 
 				+b( 'link', {e: `&:item|${val === 3 ? 'active' : ''}`} )(
 					itemprop=schema ? 'url' : false
-					href= (val === 3) ? '#' : false
+					href= (val === 3) ? false : '#'
 				)
 					if schema
 						span(itemprop='name')= val
