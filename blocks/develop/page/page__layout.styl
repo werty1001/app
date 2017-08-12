@@ -10,10 +10,9 @@
 	margin 0 auto
 
 	if gutter > 0
-		&:not(.grid)
-			padding-left ss( ( gutter / 2 ) + 5 )
-			padding-right ss( ( gutter / 2 ) + 5 )
+		padding-left ss( ( gutter / 2 ) + 5 )
+		padding-right ss( ( gutter / 2 ) + 5 )
 
-			+mq( layout + gutter )
-				padding-left ss( gutter / 2 )
-				padding-right ss( gutter / 2 )
+		+mq( layout + gutter )
+			padding-left ss( gutter / 2 )
+			padding-right ss( gutter / 2 )

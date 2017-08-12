@@ -11,50 +11,55 @@
 	overflow hidden
 
 	background #fff
-	border solid 1px #eee
+	border solid 1px $c_border
 	border-radius 2px
 	transition border .3s
 	
-	input:checked ~ &
-		border-color active
-		
-	input[type="radio"] ~ &
-		border-radius 50%
 
-	&:after
-		content ''
-		opacity 0
+	.checkbox__input:checked ~ &
+		border-color active
+
+
+
+	.checkbox__input[type="radio"] ~ &
+		border-radius 50%
 		
-		input:checked ~ &
+		&:after
+			content ''
+			abs top left right bottom
+			margin ss(4)
+			background-color active
+			transform scale(2)
+			transition transform .3s, opacity .3s
+			border-radius 50%
+			opacity 0
+
+	.checkbox__input[type="radio"]:checked ~ &
+		
+		&:after
+			transform scale(1)
 			opacity 1
 
 
-	input[type="radio"] ~ &:after
-		abs top left right bottom
-		margin ss(4)
-		background-color active
-		transform scale(2)
-		transition transform .3s, opacity .3s
-		border-radius 50%
 
-	input[type="radio"]:checked ~ &:after
-		transform scale(1)
-		opacity 1
-
-
-	input[type="checkbox"] ~ &:after
-		content ''
-		abs top 50% left 50%
-		width ss(12)
-		height ss(8)
-		border solid active
-		border-width 0 0 2px 2px
-		margin (-( (@width) / 2)) 0 0 (-(@width / 2))
-		transform rotate(-50deg) translate(5px,1px)
-		transition transform .3s, opacity .3s
-		opacity 0
+	.checkbox__input[type="checkbox"] ~ &
 		
-	input[type="checkbox"]:checked ~ &:after
-		transform rotate(-50deg) translate(0,0)
-		opacity 1
-			
+		&:after
+			content ''
+			abs top 50% left 50%
+			width ss(12)
+			height ss(8)
+			border solid active
+			border-width 0 0 2px 2px
+			margin (-( (@width) / 2)) 0 0 (-(@width / 2))
+			transform rotate(-50deg) translate(5px,1px)
+			transition transform .3s, opacity .3s
+			opacity 0
+		
+	.checkbox__input[type="checkbox"]:checked ~ &
+
+		&:after
+			transform rotate(-50deg) translate(0,0)
+			opacity 1
+
+
