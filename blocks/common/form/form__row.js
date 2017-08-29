@@ -1,23 +1,19 @@
 
-// Responsive form rows
+	// Responsive form rows
 
-function responsiveRows() {
+	function responsiveRows() {
 
-	var el = 'form__row', rows = document.getElementsByClassName( el );
+		var rows = document.querySelectorAll( '.form__row[data-inline]' );
 
-	if ( ! rows ) return;
+			if ( ! rows.length > 0 ) return;
 
-	for ( var i = rows.length; i--; ) {
+			for ( var i = 0, row; row = rows[i]; i++ ) {
 
-		var row = rows[i], attr = row.dataset.inline;
+				row.classList[ document.documentElement.clientWidth < +row.dataset.inline ? 'add' : 'remove' ]( 'form__row--inline' );
 
-			if ( ! attr ) return;
-
-			row.classList[ document.documentElement.clientWidth < +attr ? 'add' : 'remove' ]( el + '--inline' );
+			}
 
 	}
 
-}
-
-window.addEventListener( 'load',   responsiveRows );
-window.addEventListener( 'resize', responsiveRows );
+	window.addEventListener( 'load',   responsiveRows );
+	window.addEventListener( 'resize', responsiveRows );

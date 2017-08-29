@@ -4,7 +4,7 @@
 	"kit": {
 		"symbol": true,
 		"modifier": true,
-		"viewbox": "0 0 16 16",
+		"viewBox": "0 0 16 16",
 		"items": [ "vk", "ok", "fb", "tw", "gp", "ins", "yt", "vkontakte" ]
 	},
 
