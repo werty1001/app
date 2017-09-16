@@ -1,0 +1,7 @@
+
+.section--small-padding
+	
+	section = typeof( $section ) == 'object' ? $section : {}
+	padding = typeof( section.small ) == 'unit' ? section.small : 40
+
+	padding: ss( padding ) 0

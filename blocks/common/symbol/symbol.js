@@ -1,47 +1,47 @@
 
-// Load symbol sprite
+	// Load symbol sprite
 
-(function ( body ) {
+	(function ( body ) {
 
-	var link = body.dataset.symbol || __webpackSymbol__,
-		data, xhr, lastMod, storageLastMod, storage;
+		var link = body.dataset.symbol || __webpackSymbol__,
+			data, xhr, lastMod, storageLastMod, storage;
 
-		if ( ! link ) return;
+			if ( ! link ) return;
 
-		lastMod = +link.split( '?ver=' )[1];
-		storage = localStorage.getItem( 'symbolSprite' );
-		storageLastMod = +localStorage.getItem( 'lastModSymbol' );
+			lastMod = +link.split( '?ver=' )[1];
+			storage = localStorage.getItem( 'symbolSprite' );
+			storageLastMod = +localStorage.getItem( 'lastModSymbol' );
 
 
-		if ( storage && lastMod === storageLastMod  ) {
+			if ( storage && lastMod === storageLastMod  ) {
 
-			body.insertAdjacentHTML( 'afterbegin', storage );
+				body.insertAdjacentHTML( 'afterbegin', storage );
 
-		} else {
+			} else {
 
-			xhr = new XMLHttpRequest();
-			xhr.open( 'GET', link, true );
-			xhr.onreadystatechange = function() {
+				xhr = new XMLHttpRequest();
+				xhr.open( 'GET', link, true );
+				xhr.onreadystatechange = function() {
 
-				if ( this.readyState !== 4 ) return;
+					if ( this.readyState !== 4 ) return;
 
-				if ( this.status !== 200 ) return console.log( xhr.responseText );
+					if ( this.status !== 200 ) return console.log( xhr.responseText );
 
-				data = xhr.responseText;
+					data = xhr.responseText;
 
-				if ( data ) {
+					if ( data ) {
 
-					body.insertAdjacentHTML( 'afterbegin', data );
+						body.insertAdjacentHTML( 'afterbegin', data );
 
-					localStorage.setItem( 'symbolSprite', data );
-					localStorage.setItem( 'lastModSymbol', lastMod );
+						localStorage.setItem( 'symbolSprite', data );
+						localStorage.setItem( 'lastModSymbol', lastMod );
 
-				}
+					}
 
-			};
+				};
 
-			xhr.send();
+				xhr.send();
 
-		}
+			}
 
-})( document.body );
+	})( document.body );
