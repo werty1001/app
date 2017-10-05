@@ -1,0 +1,11 @@
+
+.list--decimal
+
+	.list__item
+		position relative
+		padding-left 1.5em
+		counter-increment item-counter
+
+		&:before
+			content counter(item-counter) '.'
+			abs top left
