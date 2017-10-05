@@ -2,17 +2,14 @@
 .form__row
 
 	form = typeof( $form ) == 'object' ? $form : {}
-	margin = typeof( form.margin ) == 'unit' ? form.margin : 16
+	gutter = typeof( form.gutter ) == 'unit' ? form.gutter : 20
 
 	display flex
-	margin-left (-(ss( margin )))
+	align-items center
+
+	margin-left (-(ss( gutter )))
+	
 	
 	&--inline
 		display block
 		margin 0
-		
-		.form__col
-			padding 0
-			
-		.form__col + .form__col
-			margin-top ss( margin )

@@ -1,4 +1,5 @@
 
+
 	// Responsive form rows
 
 	function responsiveRows() {
@@ -9,7 +10,7 @@
 
 			for ( var i = 0, row; row = rows[i]; i++ ) {
 
-				row.classList[ document.documentElement.clientWidth < +row.dataset.inline ? 'add' : 'remove' ]( 'form__row--inline' );
+				row.classList[ row.parentNode.clientWidth < +row.dataset.inline ? 'add' : 'remove' ]( 'form__row--inline' );
 
 			}
 
@@ -17,3 +18,4 @@
 
 	window.addEventListener( 'load',   responsiveRows );
 	window.addEventListener( 'resize', responsiveRows );
+

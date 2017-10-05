@@ -2,7 +2,8 @@
 .form__col
 
 	form = typeof( $form ) == 'object' ? $form : {}
-	margin = typeof( form.margin ) == 'unit' ? form.margin : 16
+	gutter = typeof( form.gutter ) == 'unit' ? form.gutter : 20
+	margin = typeof( form.margin ) == 'unit' ? form.margin : 20
 
 	position relative
 	min-height 1px
@@ -11,4 +12,27 @@
 	flex-basis 0
 	max-width 100%
 	
-	padding 0 0 0 ss( margin )
+	padding 0 0 0 ss( gutter )
+
+	.form__row--inline &
+		padding 0
+
+		if ( margin > 20 )
+
+			margin-top ss( 20 )
+
+			if ( ( margin / 2 ) > 20 )
+				+mq('sm')
+					margin-top ss( margin / 2 )
+
+			+mq('md')
+				margin-top ss( margin )
+
+		else
+
+			margin-top ss( margin )
+
+
+		&:first-child
+		&--label + ^[0]
+			margin-top 0
