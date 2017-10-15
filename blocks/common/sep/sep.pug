@@ -1,0 +1,9 @@
+-
+	BEMPUG.beforeParse[ 'sep' ] = function( block ) {
+
+		if ( ! block.isElement && typeof block.data.t === 'undefined' )
+			block.data.t = 'hr';
+
+		if( typeof block.data.e === 'undefined' ) block.data.e = 'page';
+
+	};
