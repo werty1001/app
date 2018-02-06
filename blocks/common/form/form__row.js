@@ -10,7 +10,7 @@
 
 			for ( var i = 0, row; row = rows[i]; i++ ) {
 
-				row.classList[ row.parentNode.clientWidth < +row.dataset.inline ? 'add' : 'remove' ]( 'form__row--inline' );
+				row.classList[ document.documentElement.clientWidth < +row.dataset.inline ? 'add' : 'remove' ]( 'form__row--inline' );
 
 			}
 

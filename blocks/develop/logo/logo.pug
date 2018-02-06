@@ -1,6 +1,6 @@
 -
 	BEMPUG.beforeParse[ 'logo' ] = function( block ) {
 
-		if( typeof block.attributes.href === 'undefined' && page.path !== 'index' ) block.attributes.href = './index.html';
+		if( ! block.isElement && typeof block.attributes.href === 'undefined' && page.path !== 'index' ) block.attributes.href = './index.html';
 
 	};
