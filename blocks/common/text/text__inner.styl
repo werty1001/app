@@ -1,0 +1,24 @@
+
+.text__inner
+	position relative
+	display block
+	overflow hidden
+	//max-height ss(200)
+	
+	&:after
+		content ''
+		display block
+		abs bottom left right
+		height 20%
+		background linear-gradient( 180deg, alpha(#fff,0) 0%, alpha(#fff,50%) 50%, alpha(#fff,100%) 100% )
+		pointer-events none
+		z-index 1
+
+	.text--limit-disabled &
+	.text--limit-open &
+		max-height 1000em !important
+	
+		&:after
+			background none
+			border transparent
+

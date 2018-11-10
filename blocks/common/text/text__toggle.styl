@@ -1,0 +1,22 @@
+
+.text__toggle
+
+	font-size .8em
+	margin-top ss(20)
+	
+	&-link
+		text-decoration none
+		border-bottom dotted 1px alpha($c_link,30%)
+		cursor pointer
+
+		&:before
+			content attr(data-show)
+			
+			.text--limit-open &
+				content attr(data-hide)
+
+		&:hover
+			text-decoration none
+			
+	.text--limit-disabled &
+		display none

@@ -1,0 +1,10 @@
+-
+	BEMPUG.beforeParse[ 'text' ] = function( block ) {
+
+		if( ! block.isElement && block.attributes[ 'data-limit-height' ] ) {
+
+			block.data.m = ( block.data.m ? block.data.m : '' ) + '.limit';
+
+		}
+
+	};

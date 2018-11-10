@@ -10,7 +10,7 @@ mixin search( bem, placeholder )
 			meta(itemprop='target' content=`http://${global.app.domain}/?s={s}`)
 
 		+b( 'input', { e: '&' } )(
-			type='search' name='input_search' placeholder=placeholder
+			type='search' name='query' placeholder=placeholder
 			itemprop=schema ? 'query-input' : false
 			required
 		)
