@@ -1,0 +1,66 @@
+
+.field__el
+	display block
+	width 100%
+	max-width 100%
+	outline none
+
+	font-family inherit
+	font-size 16px
+	color $c_text
+	font-style normal
+	font-weight 400
+	text-transform none
+	line-height 1
+
+	height 50px
+	padding 0 18px
+
+	background-color #fff
+	border solid 1px $c_border
+	border-radius 2px
+	box-shadow 1px 1px 3px alpha($c_text,10%)
+	transition border .2s ease-in, box-shadow .2s ease-in
+
+	&:focus
+		border-color $c_bright
+		box-shadow 1px 1px 3px alpha(@border-color,30%)
+
+
+	input&
+	textarea&
+
+		&::placeholder
+			font-family inherit
+			color alpha($c_dim,50%)
+			font-size @font-size
+			font-style normal
+			font-weight 400
+			text-overflow ellipsis
+			opacity 1
+
+
+	select&
+		padding-right 25px
+		background @background-color b64('img/select.svg') no-repeat right center
+		text-indent 0.01px
+		text-overflow ''
+		appearance none
+
+		optgroup
+			font-weight 700
+
+		&::-ms-expand
+			display none
+
+
+	textarea&
+		height auto
+		min-height 120px
+		padding-top 12px
+		padding-bottom @padding-top
+		resize vertical
+		overflow-x hidden
+		overflow-y auto
+		line-height 1.2
+

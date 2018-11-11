@@ -1,0 +1,9 @@
+
+.app__slick
+
+	grid = typeof( $grid ) == 'object' ? $grid : {}
+	gutter = typeof( grid.gutter ) == 'unit' ? grid.gutter : 30
+
+	if gutter > 0
+		margin-left ( gutter / 2 ) * -1px
+		margin-right ( gutter / 2 ) * -1px

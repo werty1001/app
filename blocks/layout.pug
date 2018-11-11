@@ -11,6 +11,11 @@ include /node_modules/bempug/index
 include /core/temp/blocks
 
 
+//- Set modifier
+
+- BEMPUG.modifier = '_';
+
+
 //- New line for pretty output
 
 - var n = global.newLine, nn = n + n, nnn = n + n + n;
@@ -24,7 +29,6 @@ include /core/temp/blocks
 //- Body symbol
 
 - var bodySymbol = false;
-
 
 
 //- Layout
@@ -118,17 +122,18 @@ else
 					- var mstile = i > 0 ? ( icon === '310x150' ? 'wide' : 'square') + icon + 'logo' : 'TileImage';
 					meta(name=`msapplication-${mstile}` content=`${global.paths.favicons}/mstile-${icon}.png`)
 
-
-		+b( 'page', page.bem, 'body' )(
+		body(
 			itemscope=schema
 			itemtype=schema ? 'http://schema.org/WebPage' : false
 			data-symbol= ( ! global.isDevelopment && bodySymbol ) ? `${global.paths.img}/symbol.svg?ver=${new Date().getTime()}` : false
 		)
 
+			+b( 'app', page.bem )
 
-			//- Content
 
-			block content
+				//- Content
+
+				block content
 
 
 			//- Scripts

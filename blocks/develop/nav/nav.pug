@@ -32,9 +32,7 @@ mixin nav__item( prefix, value )
 		block
 
 
-mixin nav( bem, name )
-
-	- var data = global.blocks.nav[ name ? name : 'demo' ];
+mixin nav( bem, data )
 
 	+b( 'nav', bem, 'nav' )(
 

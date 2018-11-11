@@ -4,11 +4,6 @@
  */
 
 
-// Unit - 1px | .1rem | .1em
-
-$unit = .1rem
-
-
 // Layout
 
 $layout = 1170
@@ -16,75 +11,25 @@ $layout = 1170
 
 // Colors
 
-$c_text = #252525
-
-$c_border = #eee
 $c_bg = #f9f9f9
+$c_border = #ddd
 
 $c_link = #0645ad
-$c_link_hover = #333
-$c_link_visited = false
+$c_text = #252525
 
+$c_dim = alpha($c_text,70%)
 $c_bright = #c53e1c
-$c_dim = #bbb
 
-$c_success = green
-$c_error = red
+$c_success = #2db361
+$c_error = #ef6941
 
 
 // Typography
 
-$typography = {
-	
-	text: 'Roboto',
-	title: false,
-
-	size: 15,
-	line: 1.5,
-	weight: 400,
-	spacing: 1px,
-	hyphens: false,
-
-	margin: 1.2em,
-	
-	size_s: 24,
-	size_m: 28,
-	size_l: 36,
-	size_xl: 44
-
-}
-
-
-// Section
-
-$section = {
-
-	end: 30,
-	start: 80,
-	small: 40
-
-}
-
-
-// Field
-
-$field = {
-
-	height: 44,
-	padding: 8
-
-}
-
-
-// Form
-
-$form = {
-	
-	margin: 20,
-	gutter: 20,
-	gap: 40
-
-}
+$f_family = 'Roboto'
+$f_size = 16px
+$f_weight = 400
+$f_height = 1.6
 
 
 // Grid
@@ -118,25 +63,28 @@ $media = {
 }
 
 
-
-
 /**
  * Mixins
  */
+
+
+// Add to body for fix safari bug
+
+fix_safari_sibling_selectors_bug()
+
+	-webkit-animation bugfix infinite 1s
+
+	@-webkit-keyframes bugfix
+		from
+			padding 0
+		to
+			padding 0
 
 
 // Base64
 
 b64(img = '')
 	embedurl( img )
-
-
-// Units
-
-ss( val = 1, unit = false )
-	if typeof( unit ) != 'unit'
-		unit = typeof( $unit ) == 'unit' ? $unit : 1px
-	floor( val * unit, 1 )
 
 
 // Retina
@@ -202,5 +150,4 @@ fix()
 
 rel()
 	-pos( 'relative', arguments )
-
 

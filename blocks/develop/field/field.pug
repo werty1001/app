@@ -1,0 +1,28 @@
+mixin field( bem, label, list )
+
+	+b( 'field', bem )
+
+		if label
+			+e( 'label', {t: 'label', m: ( attributes.required ? 'required' : '' ) } )= label
+
+		+e( 'inner' )
+
+			if list
+				+e( 'el', {t: 'select'} )&attributes(attributes)
+					if attributes.placeholder
+						option(value='')= attributes.placeholder
+					each item in list
+						if typeof item === 'object'
+							option(value=item.value, selected=item.selected)= item.label
+						else
+							option= item
+
+			else
+
+				if attributes.type
+					+e( 'el', {t: 'input'} )&attributes(attributes)
+
+				else
+					+e( 'el', {t: 'textarea'} )&attributes(attributes)
+
+		block

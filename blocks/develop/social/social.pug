@@ -2,19 +2,17 @@ mixin social( bem, data )
 
 	+b( 'social', bem )&attributes(attributes)
 
-		each val in data.items
+		if Array.isArray( data ) && data.length > 0
 
-			- var item = global.blocks.social.list[ val ] || {};
+			each item in data
+				+b( 'link', {e: `&|${ item.icon ? item.icon : '' }`, p: 0} )(href=item.href)
 
-			+b( 'link', {e: `&|${ data.modifier ? item.modifier : '' }`, p: 0} )(href=item.href)
+					if item.icon
+						+b( 'icon', {t: 'svg', e: '&'} )(viewBox='0 0 16 16')
+							use(xlink:href=`#social__${item.icon}`)
 
-				if data.symbol
-
-					+b( 'icon', {t: 'svg', e: '&'} )
-						use(xlink:href=`#social__${item.icon}`)
-
-				else
-
-					+b( 'icon', {t: 'svg', e: '&'} )(viewBox=data.viewBox)!= item.svg
+					else
+						if item.name
+							+e( 'name' )= item.name
 
 		block

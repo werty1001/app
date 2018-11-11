@@ -1,0 +1,24 @@
+-
+	BEMPUG.beforeParse[ 'button' ] = function( block ) {
+
+		if ( ! block.isElement && typeof block.data.t === 'undefined' )
+			block.data.t = block.attributes.href ? 'a' : 'button';
+
+		let href = ( typeof block.attributes.href === 'string' ) ? block.attributes.href : '';
+
+		if ( ! href ) return;
+
+		if ( BEMPUG.isExternal( href ) && typeof block.attributes.target === 'undefined' )
+			return block.attributes.target = '_blank';
+
+		href = href.replace( /&amp;|&/g, BEMPUG.getCurrentBlock() );
+
+		if ( /\.html+$/.test( href ) )
+			return block.attributes.href = './' + ( href.charAt(0) === '/' ? href.slice(1) : href );
+
+		if ( href.charAt(0) === '/' )
+			return block.attributes.href = global.paths.static + '/' + href.slice(1);
+
+		if ( href ) block.attributes.href = href;
+
+	};

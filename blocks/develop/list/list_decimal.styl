@@ -1,0 +1,15 @@
+
+.list_decimal
+
+	.list__item
+		counter-increment step-counter
+		padding 0 0 0 2em
+
+		&:before
+			content counter(step-counter) '.'
+			width 1.4em
+			float left
+			margin 0 0 0 -2em
+			font-size 1em
+			font-weight 700
+			text-align center

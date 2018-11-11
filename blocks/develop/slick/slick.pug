@@ -1,0 +1,10 @@
+-
+	BEMPUG.beforeParse[ 'slick' ] = function( block ) {
+
+		let slick = 'jquery.slick.min.js';
+
+		page.jquery = true;
+
+		if ( ! global.options.requireLibs && page.scripts.indexOf( slick ) === -1 ) page.scripts.push( slick );
+
+	};

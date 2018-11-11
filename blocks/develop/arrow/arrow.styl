@@ -1,0 +1,24 @@
+
+/*!*
+ * Arrow
+ */
+
+.arrow
+	position relative
+	width 40px
+	height @width
+	text-align center
+	color $c_bright
+	background-color #fff
+	border 1px solid currentColor
+	transition background-color .2s
+	outline none
+	border-radius 2px
+
+	&:hover
+		background-color $c_bright
+		border-color @background-color
+		color #fff
+		z-index 2
+
+@import 'arrow__icon'

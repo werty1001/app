@@ -2,10 +2,13 @@
 .social__link
 	position relative
 	display inline-block
-	width ss(38)
+	vertical-align top
+	width 40px
 	height @width
 	text-decoration none
-	background-color #fff
-	border solid 1px $c_border
+	transition background .25s
 	border-radius 2px
-	margin ss(3)
+	margin 0 10px 10px 0
+	
+	&:last-child
+		margin-right 0

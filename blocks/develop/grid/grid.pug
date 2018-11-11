@@ -1,0 +1,83 @@
+-
+	const grid = function( block ) {
+
+		if ( block.name === 'grid' ) {
+
+			if( typeof block.data.p === 'undefined' ) block.data.p = false;
+			if( typeof block.data.e === 'undefined' ) block.data.e = 'app:layout';
+
+			return;
+		}
+
+		let classes = '', mods = {
+			c: 'center',
+			r: 'right',
+			l: 'left',
+			t: 'top',
+			m: 'middle',
+			b: 'bottom',
+			a: 'around',
+			bw: 'between',
+			ol: 'last',
+			of: 'first',
+			np: 'no_pull',
+			ng: 'no_gutter',
+			g: 'gap',
+			ng: 'no_gap'
+		};
+
+		block.data.e = Array.isArray( block.data.e ) ? block.data.e : [block.data.e];
+
+		Object.keys( block.data ).forEach( function( key ) {
+
+			if ( ['xs','sm','md','lg','xl','xxl'].indexOf( key ) === -1 ) return;
+
+			let array = block.data[key].split( '|' );
+
+			if ( block.name === 'col' ) {
+
+				let width = /^\d+$/.test( array[0] ) ? array[0] : false,
+					pos = array[1] ? array[1].split( ':' ) : [],
+					horizontal = pos[0] ? mods[ pos[0] ] : false,
+					vertical = pos[1] ? mods[ pos[1] ] : false,
+					mar = array[2] ? array[2].split( ':' ) : [],
+					offset = /^\d+$/.test( mar[0] ) ? mar[0] : /^\d+$/.test( mar[1] ) ? mar[1] : false,
+					gap = mods[ mar[0] ] || mods[ mar[1] ] || false,
+					pull = /^\d+$/.test( array[3] ) ? 'pull_' + array[3] : mods[ array[3] ],
+					push = /^\d+$/.test( array[4] ) ? 'push_' + array[4] : mods[ array[4] ];
+
+					classes += width      ? `.${key}_${width}`            : '';
+					classes += horizontal ? `.${key}_align_${horizontal}` : '';
+					classes += vertical   ? `.${key}_align_${vertical}`   : '';
+					classes += offset     ? `.${key}_offset_${offset}`    : '';
+					classes += pull       ? `.${key}_${pull}`             : '';
+					classes += push       ? `.${key}_${push}`             : '';
+
+					if ( gap ) block.data.e.push( `grid:${gap}_${key}` );
+			}
+
+			if ( block.name === 'row' ) {
+
+				let pos = array[0] ? array[0].split( ':' ) : [],
+					horizontal = pos[0] ? mods[ pos[0] ] : false,
+					vertical = pos[1] ? mods[ pos[1] ] : false,
+					gap = array[1] ? mods[ array[1] ] : false;
+
+					classes += horizontal ? `.${key}_align_${horizontal}` : '';
+					classes += vertical   ? `.${key}_align_${vertical}`   : '';
+
+					if ( gap ) block.data.e.push( `grid:${gap}_${key}` );
+			}
+
+		});
+
+		if ( typeof block.data.p === 'undefined' && ['grid','grid__row'].indexOf( block.parent.name ) !== -1 )
+			block.data.p = 'grid';
+
+		block.data.m = classes + ( typeof block.data.m === 'string' ? '.' + block.data.m : '' );
+
+	};
+
+	BEMPUG.beforeParse[ 'row' ] = grid;
+	BEMPUG.beforeParse[ 'col' ] = grid;
+	BEMPUG.beforeParse[ 'grid' ] = grid;

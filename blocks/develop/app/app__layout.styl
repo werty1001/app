@@ -1,0 +1,14 @@
+
+.app__layout
+
+	layout = typeof( $layout ) == 'unit' ? $layout : 1170
+	grid = typeof( $grid ) == 'object' ? $grid : {}
+	gutter = typeof( grid.gutter ) == 'unit' ? grid.gutter : 30
+
+	position relative
+	max-width layout * 1px
+	margin 0 auto
+
+	if gutter > 0
+		padding-left ( gutter / 2 ) * 1px
+		padding-right ( gutter / 2 ) * 1px
