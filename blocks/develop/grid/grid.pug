@@ -71,7 +71,7 @@
 
 		});
 
-		if ( typeof block.data.p === 'undefined' && ['grid','grid__row'].indexOf( block.parent.name ) !== -1 )
+		if ( typeof block.data.p === 'undefined' && ['grid','grid__row','grid__col'].indexOf( block.parent.name ) !== -1 )
 			block.data.p = 'grid';
 
 		block.data.m = classes + ( typeof block.data.m === 'string' ? '.' + block.data.m : '' );
