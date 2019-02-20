@@ -1,0 +1,10 @@
+
+.link_pretty
+	color $c_link
+	text-decoration none
+	border-bottom solid 1px alpha( @color, 30% )
+	transition color .3s, border .3s
+
+	&:hover
+		color darken(@color,20%)
+		border-color alpha( @color, 50% )

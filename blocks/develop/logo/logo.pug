@@ -1,6 +1,9 @@
--
-	BEMPUG.beforeParse[ 'logo' ] = function( block ) {
+mixin logo()
 
-		if( ! block.isElement && typeof block.attributes.href === 'undefined' && page.path !== 'index' ) block.attributes.href = './index.html';
+	- const tag = page.path !== 'index' ? 'a' : 'div'
 
-	};
+	if tag === 'a' && !attributes.href
+		- attributes.href = './index.html'
+
+	#{tag}.logo&attributes(attributes)
+		block

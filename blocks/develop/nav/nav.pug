@@ -1,62 +1,28 @@
-mixin nav__item( prefix, value )
+mixin nav( data )
 
-	- var text = value.text || '';
-	- var href = value.href || false;
-
-	- var before = value.before || '';
-	- var after = value.after || '';
-
-	- var linkMod = value.mod ? ( value.mod.link ? value.mod.link : '' ) : '';
-	- var itemMod = value.sub ? '.sub' : '';
-	
-	- itemMod += value.mod ? ( value.mod.item ? value.mod.item : '' ) : '';
-	- itemMod += ( page.path + '.html' ) === href ? '.active' : '';
-
-
-	+e( `${prefix}item`, itemMod )
-
-		!= before
-
-		+b( 'link', {e: `&:${prefix}link`, m: linkMod })(
-			href=href
-			itemprop= href && schema ? 'url' : false
-		)
-
-			if href && schema
-				span(itemprop='name')= text
-			else
-				= text
-
-		!= after
-
-		block
-
-
-mixin nav( bem, name )
-
-	- var data = global.blocks.nav[ name ? name : 'demo' ];
-
-	+b( 'nav', bem, 'nav' )(
-
+	nav.nav(
 		itemscope=schema
 		itemtype=schema ? 'http://schema.org/SiteNavigationElement' : false
-
 	)&attributes(attributes)
 
 		if Array.isArray( data ) && data.length > 0
-
-			+e( 'items', {t: 'ul'} )
-
+			ul.nav__items
 				each value in data
-
-					+nav__item( '', value )
+					li.nav__item
+						a.link.nav__link(href=value.href, itemprop= value.href && schema ? 'url' : false)
+							if value.href && schema
+								span(itemprop='name')= value.text || ''
+							else
+								= value.text || ''
 
 						if Array.isArray( value.sub ) && value.sub.length > 0
-
-							+e( 'sub-items', {t: 'ul'} )
-
+							ul.nav__sub-items
 								each val in value.sub
+									li.nav__sub-item
+										a.link.nav__sub-link(href=val.href, itemprop= val.href && schema ? 'url' : false)
+											if val.href && schema
+												span(itemprop='name')= val.text || ''
+											else
+												= val.text || ''
 
-									+nav__item( 'sub-', val )
-
-				block
+		block

@@ -1,6 +1,6 @@
-mixin header( bem )
+mixin header()
 
-	+b( 'header', bem, 'header' )(
+	header.header(
 		itemscope=schema
 		itemtype=schema ? 'http://schema.org/WPHeader' : false
 	)&attributes(attributes)

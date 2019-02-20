@@ -1,9 +1,13 @@
-mixin checkbox( bem )
+mixin checkbox( obj )
 
-	+b( 'checkbox', bem )
-		+e( 'label', {t: 'label'} )
-			+e( 'input', {t: 'input'} )&attributes(attributes)
-			+e( 'icon', {t: 'i'} )
+	- const attrs = ( !obj || obj.constructor !== Object ) ? {} : obj;
+	- attrs.class = ( attrs.class ? attrs.class + ' ' : '' ) + ( attributes.class || '' );
+	- attributes.class = false;
+
+	.checkbox&attributes(attrs)
+		label.checkbox__label
+			input.checkbox__input&attributes(attributes)
+			span.checkbox__icon
 			if block
-				+e( 'text' )
+				span.checkbox__text
 					block

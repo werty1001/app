@@ -1,0 +1,193 @@
+
+.grid
+
+	grid = typeof( $grid ) == 'object' ? $grid : {}
+	gutter = typeof( grid.gutter ) == 'unit' ? grid.gutter : 30
+	columns = typeof( grid.columns ) == 'unit' ? grid.columns : 12
+	gap = typeof( grid.gap ) == 'unit' ? grid.gap : 30
+	flexbox = flex in grid and grid.flex is true ? true : false
+	media = typeof( $media ) == 'object' ? $media : {}
+	breakpoints = typeof( media.breakpoints ) == 'object' ? media.breakpoints : { xs: 1, sm: 544, md: 768, lg: 992, xl: 1150 }
+	sizes = keys( breakpoints )
+
+
+	if gutter > 0
+		padding-left ( gutter / 2 ) * 1px
+		padding-right ( gutter / 2 ) * 1px
+
+
+
+	// Grid row
+
+	&__row
+
+		if gutter > 0
+			margin-left (gutter / 2) * -1px
+			margin-right (gutter / 2) * -1px
+
+		if flexbox
+			display flex
+			flex-flow row wrap
+
+		else
+
+			&:after
+				content ''
+				display table
+				clear both
+
+		for point, i in sizes
+
+			+mq( point )
+			
+				if flexbox
+
+					&_{point}_reverse
+						flex-direction row-reverse
+
+					&_{point}_align_left
+						justify-content flex-start
+
+					&_{point}_align_right
+						justify-content flex-end
+
+					&_{point}_align_center
+						justify-content center
+
+					&_{point}_align_between
+						justify-content space-between
+
+					&_{point}_align_around
+						justify-content space-around
+
+					&_{point}_align_top
+						align-items flex-start
+						
+					&_{point}_align_middle
+						align-items center
+					
+					&_{point}_align_bottom
+						align-items flex-end
+
+
+	// Grid col
+
+	&__col
+		position relative
+		min-height 1px
+		
+		if gutter > 0
+			padding-left ( gutter / 2 ) * 1px
+			padding-right ( gutter / 2 ) * 1px
+			
+			&_no_gutter
+				padding-left 0
+				padding-right 0
+
+		if flexbox
+			flex-grow 1
+			flex-basis 0
+			max-width 100%
+
+		&_align_left
+			text-align left
+
+		&_align_right
+			text-align right
+
+		&_align_center
+			text-align center
+
+		for point, i in sizes
+
+			+mq( point )
+			
+				if gutter > 0
+
+					&_{point}_no_gutter
+						padding-left 0
+						padding-right 0
+
+				&_{point}_align_left
+					text-align left
+
+				&_{point}_align_right
+					text-align right
+
+				&_{point}_align_center
+					text-align center
+
+				if flexbox
+
+					&_{point}_first
+						order -1
+
+					&_{point}_last
+						order 1
+
+					&_{point}_align_top
+						align-self flex-start
+
+					&_{point}_align_middle
+						align-self center
+
+					&_{point}_align_bottom
+						align-self flex-end
+
+					&_{point}_pull_right
+						margin-left auto
+
+					&_{point}_pull_left
+						margin-right auto
+
+					&_{point}_no_pull
+						margin-left 0
+						margin-right 0
+
+				for i in (0..columns)
+					
+					pct = (100 / columns) * i * 1%
+
+					&_{point}_{i}
+
+						if i > 0
+
+							display block
+
+							if flexbox
+								flex 0 0 pct
+								max-width pct
+							else
+								float left
+								width pct
+						else
+
+							display none
+
+					&_{point}_offset_{i}
+						margin-left pct
+						
+					if not flexbox
+
+						&_{point}_pull_{i}
+							right i > 0 ? pct : auto
+
+						&_{point}_push_{i}
+							left i > 0 ? pct : auto
+
+
+	// Grid gap
+		
+	&__gap
+		margin-top gap * 1px
+		
+	for point, i in sizes
+
+		+mq( point )
+		
+			&__gap_{point}
+				margin-top gap * 1px
+
+			&__no_gap_{point}
+				margin-top 0
+

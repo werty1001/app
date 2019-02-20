@@ -1,0 +1,37 @@
+mixin field( label, obj )
+
+	- const attrs = ( !obj || obj.constructor !== Object ) ? {} : obj;
+	- attrs.class = ( attrs.class ? attrs.class + ' ' : '' ) + ( attributes.class || '' );
+	- attributes.class = false;
+
+	.field&attributes(attrs)
+
+		if label
+			label.field__label(class=attributes.required && 'field__label_required')= label
+
+		.field__inner
+
+			if attributes.list
+				- const list = attributes.list
+				- attributes.list = false
+
+				select.field__el&attributes(attributes)
+					if attributes.placeholder
+						option(value='')= attributes.placeholder
+					each item in list
+						if typeof item === 'object'
+							option(value=item.value, selected=item.selected)= item.label
+						else
+							option= item
+
+			else
+
+				if attributes.type
+
+					input.field__el&attributes(attributes)
+
+				else
+
+					textarea.field__el&attributes(attributes)
+
+		block

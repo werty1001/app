@@ -1,0 +1,179 @@
+
+.text
+	display block
+	margin 0
+	padding 0
+
+	font-size 1em
+	line-height typeof( $f_height ) == 'unit' ? $f_height : 1.6
+	letter-spacing .01em
+
+	
+	margin = 1.2em
+
+
+	mark
+		margin 0 3px
+		background #f3de91
+		box-shadow 0 0 0 2px @background
+		text-decoration none
+
+
+	img
+		margin margin 0
+		
+
+	a:not([class])
+		color $c_link
+		text-decoration underline
+		transition color .3s
+
+		&:visited
+			color #69309d
+
+		&:hover
+			color darken(@color,20%)
+			text-decoration none
+
+
+	p
+		margin 0
+		max-width 720px
+
+		& + p
+		& + ul
+		& + ol
+			margin-top margin
+			
+		&:empty
+			display none
+
+
+	h1, h2, h3, h4, h5, h6
+		display block
+		font-weight 700
+		line-height 1.25
+		margin 0
+		
+		& + p
+		& + ul
+		& + ol
+			margin-top margin
+		
+	for i in (1..6)
+		h{i}
+			font-size ( ( 1.2 - (i * 0.2) ) + 1 ) * 1em
+
+
+	ul,
+	ol
+		list-style none
+		display block
+		padding 0
+		
+		& + p
+			margin-top margin
+
+		& > li
+			position relative
+
+			&:not(:first-child)
+				margin-top (margin / 4)
+
+			& > ul
+			& > ol
+				padding-top margin
+
+	ul
+		& > li
+			padding 0 0 0 2em
+
+			&:before
+				content ''
+				abs top left
+				width 6px
+				height @width
+				background-color currentColor
+				border-radius 100%
+				margin ( $f_height * .45em ) .5em
+				
+	&_size_s
+		ul
+			& > li
+				&:before
+					margin-top ( $f_height * .42em )
+
+	&_size_l
+		ul
+			& > li
+				&:before
+					+mq('lg')
+						margin-top ( $f_height * .5em )
+	
+	&_size_xl
+		ul
+			& > li
+				&:before
+
+					+mq('md')
+						margin-top ( $f_height * .5em )
+
+	ol
+		& > li
+			counter-increment step-counter
+			padding 0 0 0 2em
+
+			&:before
+				content counter(step-counter) '.'
+				width 1.4em
+				float left
+				margin 0 0 0 -2em
+				font-size 1em
+				font-weight 700
+				text-align center
+
+		ol li
+			counter-increment sub-counter
+
+			&:before
+				content counter(sub-counter) '.'
+
+
+	table
+		width 100%
+		border-spacing 0
+		border-collapse collapse
+		border solid 1px $c_border
+
+		th
+			text-align left
+			font-weight 700
+			
+		tr
+			border-top solid 1px $c_border
+
+		td,
+		th
+			padding 1em 1.5em
+			vertical-align middle
+			border-left solid 1px $c_border
+
+
+	h1, h2, h3, h4, h5, h6, p, ul, ol, table
+		margin-top 30px
+
+		+mq('sm')
+			margin-top 35px
+
+		+mq('md')
+			margin-top 40px
+
+		+mq('lg')
+			margin-top 50px
+
+		+mq('xl')
+			margin-top 60px
+
+		&:first-child
+			margin-top 0
+
