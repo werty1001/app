@@ -15,9 +15,14 @@
 	border-radius 2px
 	transition border .3s
 
+	.checkbox__input:focus ~ &
+		box-shadow 0 0 3px $c_bright
 
 	.checkbox__input:checked ~ &
 		border-color active
+
+	.checkbox__input:checked:focus ~ &
+		box-shadow 0 0 3px active
 
 
 	// Radio

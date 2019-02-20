@@ -2,15 +2,15 @@
 
 	"items": [
 		{
-			"href": "index.html",
+			"href": "./index.html",
 			"text": "Home"
 		},
 		{
-			"href": "about.html",
+			"href": "./about.html",
 			"text": "About"
 		},
 		{
-			"href": "contacts.html",
+			"href": "./contacts.html",
 			"text": "Contacts"
 		}
 	],

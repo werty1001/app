@@ -1,18 +1,17 @@
-mixin social( bem, data )
+mixin social( data )
 
-	+b( 'social', bem )&attributes(attributes)
+	.social&attributes(attributes)
 
 		if Array.isArray( data ) && data.length > 0
-
 			each item in data
-				+b( 'link', {e: `&|${ item.icon ? item.icon : '' }`, p: 0} )(href=item.href)
+
+				a(href=item.href, class=item.icon && `social__link_${item.icon}`).link.social__link
 
 					if item.icon
-						+b( 'icon', {t: 'svg', e: '&'} )(viewBox='0 0 16 16')
+						svg(viewBox='0 0 16 16').icon.social__icon
 							use(xlink:href=`#social__${item.icon}`)
-
 					else
 						if item.name
-							+e( 'name' )= item.name
+							span.social__name= item.name
 
 		block

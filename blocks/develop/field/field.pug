@@ -1,14 +1,21 @@
-mixin field( bem, label, list )
+mixin field( label, obj )
 
-	+b( 'field', bem )
+	- const attrs = ( !obj || obj.constructor !== Object ) ? {} : obj;
+	- attrs.class = ( attrs.class ? attrs.class + ' ' : '' ) + ( attributes.class || '' );
+	- attributes.class = false;
+
+	.field&attributes(attrs)
 
 		if label
-			+e( 'label', {t: 'label', m: ( attributes.required ? 'required' : '' ) } )= label
+			label.field__label(class=attributes.required && 'field__label_required')= label
 
-		+e( 'inner' )
+		.field__inner
 
-			if list
-				+e( 'el', {t: 'select'} )&attributes(attributes)
+			if attributes.list
+				- const list = attributes.list
+				- attributes.list = false
+
+				select.field__el&attributes(attributes)
 					if attributes.placeholder
 						option(value='')= attributes.placeholder
 					each item in list
@@ -20,9 +27,11 @@ mixin field( bem, label, list )
 			else
 
 				if attributes.type
-					+e( 'el', {t: 'input'} )&attributes(attributes)
+
+					input.field__el&attributes(attributes)
 
 				else
-					+e( 'el', {t: 'textarea'} )&attributes(attributes)
+
+					textarea.field__el&attributes(attributes)
 
 		block
